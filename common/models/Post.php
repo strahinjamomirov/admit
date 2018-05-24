@@ -7,10 +7,7 @@
 
 namespace common\models;
 
-use common\components\Json;
-use core\user\models\User;
 use Yii;
-use yii\behaviors\SluggableBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
 
@@ -35,8 +32,6 @@ use yii\helpers\Html;
  * @since  0.1.0
  */
 class Post extends ActiveRecord {
-	public $username;
-	public $categories;
 
 	const COMMENT_STATUS_OPEN = 'open';
 	const COMMENT_STATUS_CLOSE = 'close';
@@ -51,21 +46,6 @@ class Post extends ActiveRecord {
 	 */
 	public static function tableName() {
 		return '{{%post}}';
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function behaviors() {
-		return [
-			[
-				'class'        => SluggableBehavior::className(),
-				'attribute'    => 'title',
-				'attributes'   => [ ActiveRecord::EVENT_BEFORE_INSERT => [ 'slug' ] ],
-				'ensureUnique' => true,
-				'immutable'    => true,
-			],
-		];
 	}
 
 	/**
@@ -108,7 +88,6 @@ class Post extends ActiveRecord {
 			'content'        => Yii::t( 'cms', 'Content' ),
 			'date'           => Yii::t( 'cms', 'Date' ),
 			'status'         => Yii::t( 'cms', 'Status' ),
-			'slug'           => Yii::t( 'cms', 'Slug' ),
 			'comment_status' => Yii::t( 'cms', 'Comment Status' ),
 			'comment_count'  => Yii::t( 'cms', 'Comment Count' ),
 		];
@@ -153,26 +132,6 @@ class Post extends ActiveRecord {
 		return [
 			0 => 'No',
 			1 => 'Yes',
-		];
-	}
-
-	/**
-	 * Get permalink of current post.
-	 *
-	 * @return string
-	 */
-	public function getUrl() {
-
-		$params = $this->getUrlParams();
-
-		return Yii::$app->urlManager->createAbsoluteUrl( $params );
-	}
-
-	public function getUrlParams() {
-		return [
-			'/post/view',
-			'id'       => $this->id,
-			'slug'     => $this->slug,
 		];
 	}
 
