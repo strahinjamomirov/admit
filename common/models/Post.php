@@ -1,10 +1,4 @@
 <?php
-/**
- * @link      http://www.writesdown.com/
- * @copyright Copyright (c) 2015 WritesDown
- * @license   http://www.writesdown.com/license/
- */
-
 namespace common\models;
 
 use Yii;
@@ -19,7 +13,6 @@ use yii\helpers\Html;
  * @property string             $date
  * @property string             $modified
  * @property string             $status
- * @property string             $slug
  * @property string             $comment_status
  * @property integer            $comment_count
  * @property integer            $views_count
@@ -28,8 +21,6 @@ use yii\helpers\Html;
  *
  * @property PostComment[]      $postComments
  *
- * @author Agiel K. Saputra <13nightevil@gmail.com>
- * @since  0.1.0
  */
 class Post extends ActiveRecord {
 

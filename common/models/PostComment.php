@@ -1,10 +1,4 @@
 <?php
-/**
- * @link http://www.writesdown.com/
- * @copyright Copyright (c) 2015 WritesDown
- * @license http://www.writesdown.com/license/
- */
-
 namespace common\models;
 
 use Yii;
@@ -16,9 +10,6 @@ use yii\helpers\ArrayHelper;
  * @property integer $post_id
  *
  * @property Post $commentPost
- *
- * @author Agiel K. Saputra <13nightevil@gmail.com>
- * @since 0.1.0
  */
 class PostComment extends BaseComment
 {
