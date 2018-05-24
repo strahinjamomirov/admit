@@ -59,7 +59,29 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
+    <div id="section-nav">
+        <div id="sticky-nav" class="absolute" style="z-index:0">
+            <div id="width-limit">
+                <div class="options">
+                    <ul>
+                        <li><a style="border-bottom:2px solid #fff;opacity:1;" href="/sort/top">Najbolje</a></li>
+                        <li><a href="/sort/popularno">Popularno</a></li>
+                        <li><a href="/sort/sud">Novo</a></li>
+                    </ul>
+                </div>
+                <div class="options" id="opt2" style="float:right; width:280px;display:none;">
+                    <ul style="display: inline-block;float:right;">
 
+                        <!--li id="admin2"><a  href="/moderate"  title="Budi Admin"> <div id="admin2img"></div></a></li>
+                        <li id="ispovedi2" style="margin-right:1px"><a  href="/ispovedi"  title="Ostavi ispovest"><div id="ispovedi2img"></div></a> </li-->
+
+                    </ul>
+                </div>
+                <div id="small-logo"></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -81,3 +103,11 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+<style>
+    #sticky-nav {
+        box-shadow: 0 3px 1px rgba(0, 0, 0, .3);
+        background-color: #55f;
+        width: 100%;
+        z-index: 3;
+    }
+</style>
