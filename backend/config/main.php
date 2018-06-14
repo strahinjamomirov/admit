@@ -11,12 +11,12 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [
+   /* 'modules' => [
         'user' => [
             // following line will restrict access to profile, recovery, registration and settings controllers from backend
             'as backend' => 'dektrium\user\filters\BackendFilter',
         ],
-    ],
+    ],*/
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -47,14 +47,15 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+        'view'         => [
+            'class' => \common\components\View::class,
+            'theme' => [
+                'pathMap' => [
+                    '@vendor/dektrium/yii2-user/views/' => '@backend/views/user/',
+                    '@vendor/dektrium/yii2-rbac/views/' => '@backend/views/user/',
+                ],
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

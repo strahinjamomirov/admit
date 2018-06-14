@@ -4,8 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d0baea877615dfad70a888b9352e81b",
+    "content-hash": "e66fc2130d4baf0a87640031af51f0d2",
     "packages": [
+        {
+            "name": "bower-asset/adminlte",
+            "version": "v2.3.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/almasaeed2010/AdminLTE.git",
+                "reference": "2be703222af2edcb87e562d3da2299e4352bff8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/2be703222af2edcb87e562d3da2299e4352bff8a",
+                "reference": "2be703222af2edcb87e562d3da2299e4352bff8a",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.7",
@@ -27,6 +46,22 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "bower-asset/fastclick",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:ftlabs/fastclick.git",
+                "reference": "9977a916739360ad4ffd7aa19b0016bf375e934b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ftlabs/fastclick/zipball/9977a916739360ad4ffd7aa19b0016bf375e934b",
+                "reference": "9977a916739360ad4ffd7aa19b0016bf375e934b",
+                "shasum": null
+            },
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/inputmask",
@@ -74,7 +109,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bestiejs/punycode.js.git",
+                "url": "git@github.com:bestiejs/punycode.js.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {
@@ -166,6 +201,150 @@
                 "markdown-extra"
             ],
             "time": "2017-07-16T21:13:23+00:00"
+        },
+        {
+            "name": "cebe/yii2-gravatar",
+            "version": "1.1",
+            "target-dir": "cebe/gravatar",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cebe/yii2-gravatar.git",
+                "reference": "c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cebe/yii2-gravatar/zipball/c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
+                "reference": "c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "cebe\\gravatar\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc",
+                    "homepage": "http://cebe.cc/",
+                    "role": "Core framework development"
+                }
+            ],
+            "description": "Gravatar Widget for Yii 2",
+            "keywords": [
+                "gravatar",
+                "yii"
+            ],
+            "time": "2013-12-10T17:49:58+00:00"
+        },
+        {
+            "name": "codezeen/yii2-adminlte",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codezeen/yii2-adminlte.git",
+                "reference": "7b873cc514498c8da0a4c132e29e90e0f262660d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codezeen/yii2-adminlte/zipball/7b873cc514498c8da0a4c132e29e90e0f262660d",
+                "reference": "7b873cc514498c8da0a4c132e29e90e0f262660d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/adminlte": "~2.3",
+                "cebe/yii2-gravatar": "*",
+                "codezeen/yii2-fastclick": "~1.0",
+                "rmrevin/yii2-fontawesome": "~2.13",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                },
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "codezeen\\yii2\\adminlte\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Agiel K. Saputra",
+                    "email": "13nightevil@gmail.com"
+                }
+            ],
+            "description": "Admin-LTE-2 Extension for Yii2",
+            "keywords": [
+                "AdminLTE",
+                "admin",
+                "extension",
+                "template",
+                "yii2"
+            ],
+            "time": "2016-01-10T09:27:21+00:00"
+        },
+        {
+            "name": "codezeen/yii2-fastclick",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codezeen/yii2-fastclick.git",
+                "reference": "5f6973796f9eafd9068757c57e3c4adc0f086999"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codezeen/yii2-fastclick/zipball/5f6973796f9eafd9068757c57e3c4adc0f086999",
+                "reference": "5f6973796f9eafd9068757c57e3c4adc0f086999",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/fastclick": ">=1.0.3",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "codezeen\\yii2\\fastclick\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Agiel K. Saputra",
+                    "email": "13nightevil@gmail.com"
+                }
+            ],
+            "description": "FastClick Asset Bundle for Yii2",
+            "keywords": [
+                "JS",
+                "asset",
+                "bundle",
+                "extension",
+                "fastclick",
+                "yii2"
+            ],
+            "time": "2015-05-09T19:10:07+00:00"
         },
         {
             "name": "dektrium/yii2-rbac",
@@ -438,6 +617,54 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
+            "name": "fortawesome/font-awesome",
+            "version": "v4.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "a8386aae19e200ddb0f6845b5feeee5eb7013687"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/a8386aae19e200ddb0f6845b5feeee5eb7013687",
+                "reference": "a8386aae19e200ddb0f6845b5feeee5eb7013687",
+                "shasum": ""
+            },
+            "require-dev": {
+                "jekyll": "1.0.2",
+                "lessc": "1.4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.6.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OFL-1.1",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Gandy",
+                    "email": "dave@fontawesome.io",
+                    "homepage": "http://twitter.com/davegandy",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The iconic font and CSS framework",
+            "homepage": "http://fontawesome.io/",
+            "keywords": [
+                "FontAwesome",
+                "awesome",
+                "bootstrap",
+                "font",
+                "icon"
+            ],
+            "time": "2016-10-24T15:52:54+00:00"
+        },
+        {
             "name": "kartik-v/yii2-krajee-base",
             "version": "v1.8.9",
             "source": {
@@ -542,32 +769,34 @@
             "time": "2017-11-25T06:02:18+00:00"
         },
         {
-            "name": "ramosisw/yii2-material-dashboard",
-            "version": "dev-master",
+            "name": "rmrevin/yii2-fontawesome",
+            "version": "2.17.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ramosisw/yii2-material-dashboard.git",
-                "reference": "260866084d939d7b8aa38d2f8c1385dec8d0b600"
+                "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+                "reference": "65ce306da864f4d558348aeba040ed7876878090"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramosisw/yii2-material-dashboard/zipball/260866084d939d7b8aa38d2f8c1385dec8d0b600",
-                "reference": "260866084d939d7b8aa38d2f8c1385dec8d0b600",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/65ce306da864f4d558348aeba040ed7876878090",
+                "reference": "65ce306da864f4d558348aeba040ed7876878090",
                 "shasum": ""
             },
             "require": {
-                "yiisoft/yii2": "2.*",
-                "yiisoft/yii2-bootstrap": "2.*"
+                "fortawesome/font-awesome": "~4.7",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.0.*"
             },
             "type": "yii2-extension",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "ramosisw\\CImaterial\\": ""
+                    "rmrevin\\yii\\fontawesome\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -576,24 +805,20 @@
             ],
             "authors": [
                 {
-                    "name": "Julio C. Ramos",
-                    "email": "ramosisw@gmail.com"
+                    "name": "Revin Roman",
+                    "email": "roman@rmrevin.com",
+                    "homepage": "https://rmrevin.com/"
                 }
             ],
-            "description": "Material dashboard backend theme asset bundle for Yii 2.0 Framework",
+            "description": "Asset Bundle for Yii2 with Font Awesome",
             "keywords": [
-                "admin",
                 "asset",
-                "backend",
-                "css",
-                "dashboard",
-                "extension",
-                "less",
-                "material",
-                "theme",
-                "yii2"
+                "awesome",
+                "bundle",
+                "font",
+                "yii"
             ],
-            "time": "2018-01-31T14:43:33+00:00"
+            "time": "2017-01-11T14:05:47+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3672,7 +3897,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "ramosisw/yii2-material-dashboard": 20,
         "dektrium/yii2-rbac": 20
     },
     "prefer-stable": false,

@@ -1,5 +1,6 @@
 <?php
 return [
+    'name'       => 'Confessr',
     'aliases'    => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -11,9 +12,11 @@ return [
         ],
     ],
     'modules'    => [
-        'rbac' => 'dektrium\rbac\RbacWebModule',
-        'user' => [
-            'class' => 'dektrium\user\Module',
+        'user'     => [
+            'class'              => 'dektrium\user\Module',
+            'enableConfirmation' => false,
+            'enableRegistration' => false,
         ],
-    ],
+        'rbac'     => 'dektrium\rbac\RbacWebModule',
+    ]
 ];
