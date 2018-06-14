@@ -5,19 +5,33 @@
 
 use codezeen\yii2\adminlte\widgets\Menu;
 
+$adminSiteMenu[0] = [
+    'label' => 'Dashboard',
+    'icon'  => 'fa fa-dashboard',
+    'url'   => ['/site/index']
+];
+$adminSiteMenu[1] = [
+    'label' => 'Confessions',
+    'icon'  => 'fa fa-user-secret',
+    'url'   => ['/post/index']
+];
 
+$adminSiteMenu[2] = [
+    'label' => 'Confession comments',
+    'icon'  => 'fa fa-comment',
+    'url'   => ['/post/index']
+];
+
+$adminSiteMenu[3] = [
+    'label' => 'Users IP',
+    'icon'  => 'fa fa-pied-piper-alt',
+    'url'   => ['/ip/index']
+];
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
 
-        <?php
-        $adminSiteMenu[0] = [
-            'label' => 'Dashboard',
-            'icon'  => 'fa fa-dashboard',
-            'url'   => ['/site/index'],
-        ];
-
-        echo Menu::widget([
+        <?= Menu::widget([
             'items' => $adminSiteMenu,
         ])
         ?>

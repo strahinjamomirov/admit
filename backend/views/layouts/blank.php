@@ -34,7 +34,7 @@ AdminLteAsset::register($this);
     <title><?= Yii::$app->name;?> &raquo; <?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="<?= isset(Yii::$app->params['bodyClass']) ? Yii::$app->params['bodyClass'] : "skin-blue sidebar-mini"; ?>">
+<body class="<?= isset(Yii::$app->params['bodyClass']) ? Yii::$app->params['bodyClass'] : "skin-purple-light sidebar-mini"; ?>">
 <?php $this->beginBody() ?>
 <?= $content; ?>
 <?php $this->endBody() ?>
