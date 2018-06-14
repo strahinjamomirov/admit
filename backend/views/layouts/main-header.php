@@ -9,8 +9,10 @@ use yii\helpers\Url;
 
 ?>
 <header class="main-header">
-    <div class="login-logo"><span
-                class="logo-sm"><?= Html::img(Yii::getAlias('@web/logo.png')) ?></span></div>
+    <a href="<?= Url::base(true) ?>" class="logo">
+        <span class="logo-mini"><b>C</b>SR</span>
+        <span class="logo-lg"><?= Yii::$app->name ?></span>
+    </a>
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
@@ -18,7 +20,7 @@ use yii\helpers\Url;
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
-                <?php if ( ! Yii::$app->user->isGuest): ?>
+                <?php if (!Yii::$app->user->isGuest): ?>
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <?= Gravatar::widget([
@@ -71,10 +73,10 @@ use yii\helpers\Url;
 </header>
 
 <style>
-    @media (max-width: 767px){
+    @media (max-width: 767px) {
 
         .skin-blue .main-header .navbar .dropdown-menu li a {
-            color: #666!important;
+            color: #666 !important;
         }
     }
 </style>
