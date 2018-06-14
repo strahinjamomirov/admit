@@ -53,6 +53,6 @@ class PostComment extends BaseComment
      */
     public function getCommentPost()
     {
-        return $this->hasOne(Post::className(), ['id' => 'post_id']);
+        return $this->hasOne(Post::class, ['id' => 'post_id']);
     }
 }

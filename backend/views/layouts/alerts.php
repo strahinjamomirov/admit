@@ -7,7 +7,6 @@
  */
 
 $flashes = Yii::$app->session->getAllFlashes();
-
 if (!($flashes)) {
     return;
 }

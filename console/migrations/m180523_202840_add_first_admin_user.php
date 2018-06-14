@@ -18,7 +18,7 @@ class m180523_202840_add_first_admin_user extends Migration
     {
         $transaction = $this->getDb()->beginTransaction();
         $user = \Yii::createObject([
-            'class'    => User::className(),
+            'class'    => User::class,
             'scenario' => 'create',
             'email'    => 'strahinjamomirov@gmail.com',
             'username' => 'administrator',

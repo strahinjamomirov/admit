@@ -89,7 +89,7 @@ class Post extends ActiveRecord
      */
     public function getPostComments()
     {
-        return $this->hasMany(PostComment::className(), ['post_id' => 'id']);
+        return $this->hasMany(PostComment::class, ['post_id' => 'id']);
     }
 
     /**

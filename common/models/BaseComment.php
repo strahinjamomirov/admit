@@ -58,10 +58,7 @@ abstract class BaseComment extends ActiveRecord
         return [
             [
                 ['author', 'email'],
-                'required',
-                'when' => function () {
-                    return Option::get('require_name_email') && Yii::$app->user->isGuest ? true : false;
-                },
+                'required'
             ],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
@@ -107,7 +104,7 @@ abstract class BaseComment extends ActiveRecord
      */
     public function getCommentPost()
     {
-        return $this->hasOne(Post::className(), ['id' => 'post_id']);
+        return $this->hasOne(Post::class, ['id' => 'post_id']);
     }
 
     /**
