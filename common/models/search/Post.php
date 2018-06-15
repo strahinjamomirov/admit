@@ -93,6 +93,7 @@ class Post extends PostModel
         ]);
 
         $query->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'author_ip', $this->author_ip]);
 
         return $dataProvider;
     }
