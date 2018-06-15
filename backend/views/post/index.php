@@ -7,7 +7,8 @@
  */
 
 use common\components\Box;
-use yii\grid\GridView;
+use common\models\Post;
+use kartik\grid\GridView;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -36,6 +37,23 @@ $this->title = Yii::t('app', 'Confessions');
                 'falseLabel' => 'No',
                 'class'      => 'common\components\ToggleColumn',
                 'action'     => 'toggle-featured'
+            ],
+            [
+                'attribute'           => 'date',
+                'format'              => 'raw',
+                'value'               => function ($model) {
+                    /** @var Post $model */
+                    return Yii::$app->formatter->asDate($model->date, 'php:d.m.Y');
+                },
+                'filterType'          => GridView::FILTER_DATE,
+                'filterWidgetOptions' => [
+                    'type' => \kartik\date\DatePicker::TYPE_INPUT,
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'format' => 'dd.mm.yyyy',
+                        'todayHighlight' => true
+                    ],
+                ],
             ],
             [
                 'label'     => 'Content',

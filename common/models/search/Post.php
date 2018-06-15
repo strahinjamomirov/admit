@@ -78,6 +78,10 @@ class Post extends PostModel
             return $dataProvider;
         }
 
+        if ($this->date) {
+            $query->andFilterWhere(['date' => Yii::$app->formatter->asDate($this->date, 'php:Y-m-d')]);
+        }
+
         $query->andFilterWhere([
             'id'              => $this->id,
             'featured'        => $this->featured,
@@ -89,7 +93,6 @@ class Post extends PostModel
         ]);
 
         $query->andFilterWhere(['like', 'content', $this->content]);
-
 
         return $dataProvider;
     }

@@ -18,5 +18,6 @@ return [
             'enableRegistration' => false,
         ],
         'rbac'     => 'dektrium\rbac\RbacWebModule',
+        'gridview' => ['class' => 'kartik\grid\Module']
     ]
 ];
