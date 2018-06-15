@@ -10,6 +10,7 @@ use yii\helpers\Html;
  * This is the model class for table "{{%post}}".
  *
  * @property integer       $id
+ * @property string        $author_ip
  * @property string        $content
  * @property string        $date
  * @property string        $modified
@@ -46,7 +47,7 @@ class Post extends ActiveRecord
             [['comment_count', 'views_count', 'featured'], 'integer'],
             [['content'], 'string'],
             [['date', 'modified'], 'safe'],
-            [['status', 'comment_status'], 'string', 'max' => 20],
+            [['status', 'comment_status', 'author_ip'], 'string', 'max' => 20],
             ['comment_status', 'in', 'range' => [self::COMMENT_STATUS_OPEN, self::COMMENT_STATUS_CLOSE]],
             ['comment_status', 'default', 'value' => self::COMMENT_STATUS_CLOSE],
             ['comment_count', 'default', 'value' => 0],
@@ -76,6 +77,7 @@ class Post extends ActiveRecord
     {
         return [
             'id'             => Yii::t('app', 'ID'),
+            'author_ip'      => Yii::t('app', 'Author'),
             'content'        => Yii::t('app', 'Content'),
             'date'           => Yii::t('app', 'Date'),
             'status'         => Yii::t('app', 'Status'),

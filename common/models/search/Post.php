@@ -28,21 +28,15 @@ class Post extends PostModel
     public function rules()
     {
         return [
-            [['id', 'author_id', 'type_id', 'comment_count', 'is_post'], 'integer'],
+            [['id', 'comment_count', 'views_count', 'likes', 'dislikes', 'featured'], 'integer'],
             [
                 [
-                    'title',
-                    'excerpt',
                     'content',
-                    'publish_time',
+                    'author_ip',
+                    'date',
+                    'modified',
                     'status',
-                    'password',
-                    'slug',
-                    'comments_enabled',
-                    'username',
-                    'is_featured',
-                    'updated_at',
-                    'categories'
+                    'comment_status',
                 ],
                 'safe',
             ],
@@ -62,19 +56,12 @@ class Post extends PostModel
      * Creates data provider instance with search query applied
      *
      * @param array        $params
-     * @param null|integer $user_id
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $user_id = null)
+    public function search($params)
     {
         $query = PostModel::find();
-        $query->innerJoinWith(['postAuthor'])->from(['post' => static::tableName()]);
-
-        if ($user_id) {
-            $query->andWhere(['author_id' => $user_id]);
-        }
-
 
         $query->prepare(new QueryBuilder(Yii::$app->db));
 
