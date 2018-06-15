@@ -7,7 +7,7 @@
 
 namespace backend\controllers;
 
-use cms\models\search\Post as PostSearch;
+use common\models\search\Post as PostSearch;
 use common\components\ToggleAction;
 use common\models\Post;
 use Yii;

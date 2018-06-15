@@ -14,9 +14,8 @@ use yii\helpers\Html;
  * @property string        $content
  * @property string        $date
  * @property string        $modified
- * @property string        $status
- * @property string        $comment_status
  * @property integer       $comment_count
+ * @property integer       $comment_enabled
  * @property integer       $views_count
  * @property integer       $likes
  * @property integer       $dislikes
@@ -29,14 +28,6 @@ use yii\helpers\Html;
 class Post extends ActiveRecord
 {
 
-    const COMMENT_STATUS_OPEN = 'open';
-    const COMMENT_STATUS_CLOSE = 'close';
-    const STATUS_PUBLISH = 'publish';
-    const STATUS_PRIVATE = 'private';
-    const STATUS_DRAFT = 'draft';
-    const STATUS_TRASH = 'trash';
-    const STATUS_REVIEW = 'review';
-
     /**
      * @inheritdoc
      */
@@ -44,29 +35,15 @@ class Post extends ActiveRecord
     {
         return [
             [['content'], 'required', 'message' => 'Confession can not be empty!'],
-            [['comment_count', 'views_count', 'featured'], 'integer'],
+            [['comment_count', 'views_count', 'featured', 'comment_enabled'], 'integer'],
             [['content'], 'string'],
             [['date', 'modified'], 'safe'],
-            [['status', 'comment_status', 'author_ip'], 'string', 'max' => 20],
-            ['comment_status', 'in', 'range' => [self::COMMENT_STATUS_OPEN, self::COMMENT_STATUS_CLOSE]],
-            ['comment_status', 'default', 'value' => self::COMMENT_STATUS_CLOSE],
+            [['author_ip'], 'string', 'max' => 20],
             ['comment_count', 'default', 'value' => 0],
             ['views_count', 'default', 'value' => 0],
             ['likes', 'default', 'value' => 0],
             ['dislikes', 'default', 'value' => 0],
-            ['featured', 'default', 'value' => 0],
-            [
-                'status',
-                'in',
-                'range' => [
-                    self::STATUS_PUBLISH,
-                    self::STATUS_DRAFT,
-                    self::STATUS_PRIVATE,
-                    self::STATUS_REVIEW,
-                    self::STATUS_TRASH,
-                ],
-            ],
-            ['status', 'default', 'value' => self::STATUS_PUBLISH],
+            ['featured', 'default', 'value' => 0]
         ];
     }
 
@@ -76,13 +53,12 @@ class Post extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'             => Yii::t('app', 'ID'),
-            'author_ip'      => Yii::t('app', 'Author'),
-            'content'        => Yii::t('app', 'Content'),
-            'date'           => Yii::t('app', 'Date'),
-            'status'         => Yii::t('app', 'Status'),
-            'comment_status' => Yii::t('app', 'Comment Status'),
-            'comment_count'  => Yii::t('app', 'Comment Count'),
+            'id'              => Yii::t('app', 'ID'),
+            'author_ip'       => Yii::t('app', 'Author'),
+            'content'         => Yii::t('app', 'Content'),
+            'date'            => Yii::t('app', 'Date'),
+            'comment_count'   => Yii::t('app', 'Comment Count'),
+            'comment_enabled' => Yii::t('app', 'Comment Enabled'),
         ];
     }
 
@@ -92,33 +68,6 @@ class Post extends ActiveRecord
     public function getPostComments()
     {
         return $this->hasMany(PostComment::class, ['post_id' => 'id']);
-    }
-
-    /**
-     * Get post status as array.
-     *
-     * @return array
-     */
-    public function getPostStatuses()
-    {
-        return [
-            self::STATUS_PUBLISH => Yii::t('app', 'Publish'),
-            self::STATUS_DRAFT   => Yii::t('app', 'Draft'),
-            self::STATUS_PRIVATE => Yii::t('app', 'Private'),
-            self::STATUS_TRASH   => Yii::t('app', 'Trash'),
-            self::STATUS_REVIEW  => Yii::t('app', 'Review'),
-        ];
-    }
-
-    /**
-     * Get comment status as array
-     */
-    public function getCommentStatuses()
-    {
-        return [
-            self::COMMENT_STATUS_OPEN  => Yii::t('app', 'Open'),
-            self::COMMENT_STATUS_CLOSE => Yii::t('app', 'Close'),
-        ];
     }
 
     /**
@@ -163,7 +112,6 @@ class Post extends ActiveRecord
         $query = static::find()
             ->from(['post' => $this->tableName()])
             ->andWhere(['>', 'post.id', $this->id])
-            ->andWhere(['status' => 'publish'])
             ->orderBy(['post.id' => SORT_ASC]);
 
         return $query->one();
@@ -208,7 +156,6 @@ class Post extends ActiveRecord
         $query = static::find()
             ->from(['post' => $this->tableName()])
             ->andWhere(['<', 'post.id', $this->id])
-            ->andWhere(['status' => 'publish'])
             ->orderBy(['post.id' => SORT_DESC]);
 
         return $query->one();
