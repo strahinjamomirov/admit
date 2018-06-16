@@ -35,7 +35,7 @@ class PostCommentController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'delete','toggle-comment'],
+                        'actions' => ['index', 'delete', 'toggle-comment-enabled'],
                         'allow'   => true,
                         'roles'   => ['@'],
                     ],
@@ -44,7 +44,8 @@ class PostCommentController extends Controller
             'verbs'  => [
                 'class'   => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['post']
+                    'delete'                 => ['post'],
+                    'toggle-comment-enabled' => ['post']
                 ],
             ],
         ];

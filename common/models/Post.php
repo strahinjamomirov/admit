@@ -20,7 +20,7 @@ use yii\helpers\Html;
  * @property integer       $likes
  * @property integer       $dislikes
  * @property integer       $featured
- * @property string        $url
+ * @property integer       $is_enabled
  *
  * @property PostComment[] $postComments
  *
@@ -41,6 +41,7 @@ class Post extends ActiveRecord
             [['author_ip'], 'string', 'max' => 100],
             ['comment_count', 'default', 'value' => 0],
             ['comment_enabled', 'default', 'value' => 1],
+            ['is_enabled', 'default', 'value' => 1],
             ['views_count', 'default', 'value' => 0],
             ['likes', 'default', 'value' => 0],
             ['dislikes', 'default', 'value' => 0],
@@ -60,6 +61,7 @@ class Post extends ActiveRecord
             'date'            => Yii::t('app', 'Date'),
             'comment_count'   => Yii::t('app', 'Comment Count'),
             'comment_enabled' => Yii::t('app', 'Comment Enabled'),
+            'is_enabled'      => Yii::t('app', 'Enabled'),
         ];
     }
 

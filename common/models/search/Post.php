@@ -27,7 +27,19 @@ class Post extends PostModel
     public function rules()
     {
         return [
-            [['id', 'comment_count', 'views_count', 'likes', 'dislikes', 'featured', 'comment_enabled'], 'integer'],
+            [
+                [
+                    'id',
+                    'comment_count',
+                    'views_count',
+                    'likes',
+                    'dislikes',
+                    'featured',
+                    'comment_enabled',
+                    'is_enabled'
+                ],
+                'integer'
+            ],
             [
                 [
                     'content',
@@ -89,7 +101,8 @@ class Post extends PostModel
             'comment_enabled' => $this->comment_enabled,
             'views_count'     => $this->views_count,
             'likes'           => $this->likes,
-            'dislikes'        => $this->dislikes
+            'dislikes'        => $this->dislikes,
+            'is_enabled'      => $this->is_enabled
         ]);
 
         $query->andFilterWhere(['like', 'content', $this->content]);

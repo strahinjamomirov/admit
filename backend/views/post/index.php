@@ -47,10 +47,10 @@ $this->title = Yii::t('app', 'Confessions');
                 },
                 'filterType'          => GridView::FILTER_DATE,
                 'filterWidgetOptions' => [
-                    'type' => \kartik\date\DatePicker::TYPE_INPUT,
+                    'type'          => \kartik\date\DatePicker::TYPE_INPUT,
                     'pluginOptions' => [
-                        'allowClear' => true,
-                        'format' => 'dd.mm.yyyy',
+                        'allowClear'     => true,
+                        'format'         => 'dd.mm.yyyy',
                         'todayHighlight' => true
                     ],
                 ],
@@ -86,6 +86,13 @@ $this->title = Yii::t('app', 'Confessions');
                 'falseLabel' => 'No',
                 'class'      => 'common\components\ToggleColumn',
                 'action'     => 'toggle-comments'
+            ],
+            [
+                'attribute'  => 'is_enabled',
+                'trueLabel'  => 'Yes',
+                'falseLabel' => 'No',
+                'class'      => 'common\components\ToggleColumn',
+                'action'     => 'toggle-enabled'
             ],
             [
                 'class'    => 'yii\grid\ActionColumn',

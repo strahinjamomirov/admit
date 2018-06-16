@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://phe.me
+ * @link      http://phe.me
  * @copyright Copyright (c) 2014 Pheme
- * @license MIT http://opensource.org/licenses/MIT
+ * @license   MIT http://opensource.org/licenses/MIT
  */
 
 namespace common\components;
@@ -75,6 +75,7 @@ class ToggleAction extends Action
 
     /**
      * Run the action
+     *
      * @param $id integer id of model to be loaded
      *
      * @throws \yii\web\MethodNotAllowedHttpException
@@ -130,7 +131,8 @@ class ToggleAction extends Action
                 Yii::$app->session->setFlash('error', $this->flashError);
             }
         }
-        _p( $model,1);
+        var_dump($model);
+        exit;
         if (Yii::$app->request->getIsAjax()) {
             Yii::$app->end();
         }
