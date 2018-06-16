@@ -43,8 +43,7 @@ class PostComment extends BaseComment
     public function attributeLabels()
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
-            'post_id' => Yii::t('cms', 'Comment to'),
-            'post_title' => Yii::t('cms', 'Post Title'),
+            'post_id' => Yii::t('app', 'Comment to')
         ]);
     }
 

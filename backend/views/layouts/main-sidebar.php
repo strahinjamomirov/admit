@@ -19,7 +19,7 @@ $adminSiteMenu[1] = [
 $adminSiteMenu[2] = [
     'label' => 'Confession comments',
     'icon'  => 'fa fa-comment',
-    'url'   => ['/post/index']
+    'url'   => ['/post-comment/index']
 ];
 
 $adminSiteMenu[3] = [

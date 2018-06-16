@@ -15,25 +15,19 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property string  $author
- * @property string  $email
- * @property string  $url
  * @property string  $ip
  * @property string  $date
  * @property string  $content
- * @property string  $status
- * @property string  $agent
  * @property integer $parent
- * @property integer $user_id
+ * @property integer $likes
+ * @property integer $dislikes
+ * @property integer is_enabled
  *
  * @author  Agiel K. Saputra <13nightevil@gmail.com>
  * @since   0.1.0
  */
 abstract class BaseComment extends ActiveRecord
 {
-    const STATUS_APPROVED = "approved";
-    const STATUS_NOT_APPROVED = "unapproved";
-    const STATUS_TRASHED = "trashed";
-
     /**
      * @var BaseComment[]
      */
@@ -57,25 +51,17 @@ abstract class BaseComment extends ActiveRecord
     {
         return [
             [
-                ['author', 'email'],
+                ['content'],
                 'required'
             ],
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'email'],
-            ['content', 'required'],
-            ['status', 'default', 'value' => self::STATUS_NOT_APPROVED],
-            [
-                'status',
-                'in',
-                'range' => [self::STATUS_APPROVED, self::STATUS_NOT_APPROVED, self::STATUS_TRASHED],
-            ],
-            [['parent', 'user_id'], 'integer'],
+            [['parent'], 'integer'],
             ['parent', 'default', 'value' => 0],
             [['author', 'content'], 'string'],
             ['date', 'safe'],
-            [['email', 'ip'], 'string', 'max' => 100],
-            ['agent', 'string', 'max' => 255],
-            ['url', 'url'],
+            [['ip'], 'string', 'max' => 100],
+            ['likes', 'default', 'value' => 0],
+            ['dislikes', 'default', 'value' => 0],
+            ['is_enabled', 'default', 'value' => 1]
         ];
     }
 
@@ -85,17 +71,15 @@ abstract class BaseComment extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('cms', 'ID'),
-            'author' => Yii::t('cms', 'Name'),
-            'email' => Yii::t('cms', 'Email'),
-            'url' => Yii::t('cms', 'URL'),
-            'ip' => Yii::t('cms', 'IP'),
-            'date' => Yii::t('cms', 'Date'),
-            'content' => Yii::t('cms', 'Content'),
-            'status' => Yii::t('cms', 'Status'),
-            'agent' => Yii::t('cms', 'Agent'),
-            'parent' => Yii::t('cms', 'Parent'),
-            'user_id' => Yii::t('cms', 'User ID'),
+            'id'         => Yii::t('app', 'ID'),
+            'author'     => Yii::t('app', 'Name'),
+            'ip'         => Yii::t('app', 'IP'),
+            'date'       => Yii::t('app', 'Date'),
+            'content'    => Yii::t('app', 'Content'),
+            'parent'     => Yii::t('app', 'Parent'),
+            'likes'      => Yii::t('app', 'Likes'),
+            'dislikes'   => Yii::t('app', 'Dislikes'),
+            'is_enabled' => Yii::t('app', 'Enabled'),
         ];
     }
 
@@ -107,19 +91,6 @@ abstract class BaseComment extends ActiveRecord
         return $this->hasOne(Post::class, ['id' => 'post_id']);
     }
 
-    /**
-     * Get comment status in array
-     *
-     * @return array
-     */
-    public function getStatuses()
-    {
-        return [
-            self::STATUS_APPROVED => Yii::t('cms', 'Approved'),
-            self::STATUS_NOT_APPROVED => Yii::t('cms', 'Not Approved'),
-            self::STATUS_TRASHED => Yii::t('cms', 'Trashed'),
-        ];
-    }
 
     /**
      * @inheritdoc
@@ -128,28 +99,8 @@ abstract class BaseComment extends ActiveRecord
     {
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
-                if (!Yii::$app->user->isGuest) {
-                    $this->user_id = Yii::$app->user->id;
-                    $this->email = Yii::$app->user->identity->email;
-                    $this->author = Yii::$app->user->identity->display_name;
-                }
-                $this->agent = $_SERVER['HTTP_USER_AGENT'];
                 $this->ip = $_SERVER['REMOTE_ADDR'];
                 $this->date = date('Y-m-d H:i:s');
-                $this->status = self::STATUS_APPROVED;
-                if (Option::get('comment_moderation') && Yii::$app->user->isGuest) {
-                    if (Option::get('comment_whitelist') && Option::get('require_name_email')) {
-                        $hasComment = static::find()
-                            ->andWhere(['email' => $this->email])
-                            ->andWhere(['status' => self::STATUS_APPROVED])
-                            ->count();
-                        if (!$hasComment) {
-                            $this->status = self::STATUS_NOT_APPROVED;
-                        }
-                    } else {
-                        $this->status = self::STATUS_NOT_APPROVED;
-                    }
-                }
             }
 
             return true;
