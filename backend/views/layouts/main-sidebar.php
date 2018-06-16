@@ -25,7 +25,7 @@ $adminSiteMenu[2] = [
 $adminSiteMenu[3] = [
     'label' => 'Users IP',
     'icon'  => 'fa fa-pied-piper-alt',
-    'url'   => ['/ip/index']
+    'url'   => ['/user-ip/index']
 ];
 ?>
 <aside class="main-sidebar">
