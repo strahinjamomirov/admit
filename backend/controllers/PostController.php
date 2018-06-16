@@ -49,10 +49,7 @@ class PostController extends Controller
             'verbs'  => [
                 'class'   => VerbFilter::class,
                 'actions' => [
-                    'delete'          => ['post'],
-                    'toggle-comments' => ['post'],
-                    'toggle-enabled'  => ['post'],
-                    'toggle-featured' => ['post'],
+                    'delete'          => ['post']
                 ],
             ],
         ];
@@ -74,7 +71,7 @@ class PostController extends Controller
             'toggle-comments' => [
                 'class'      => ToggleAction::class,
                 'modelClass' => Post::class,
-                'attribute'  => 'comments_enabled'
+                'attribute'  => 'comment_enabled'
             ],
         ];
     }

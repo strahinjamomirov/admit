@@ -1,12 +1,13 @@
 <?php
 /**
- * @link      http://phe.me
+ * @link http://phe.me
  * @copyright Copyright (c) 2014 Pheme
- * @license   MIT http://opensource.org/licenses/MIT
+ * @license MIT http://opensource.org/licenses/MIT
  */
 
 namespace common\components;
 
+use Closure;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
@@ -73,9 +74,11 @@ class ToggleAction extends Action
      */
     public $primaryKey = 'id';
 
+    /** @var Closure function to execute uppon succesfull save */
+    public $afterSave;
+
     /**
      * Run the action
-     *
      * @param $id integer id of model to be loaded
      *
      * @throws \yii\web\MethodNotAllowedHttpException
@@ -121,8 +124,8 @@ class ToggleAction extends Action
         } else {
             $model->$attribute = $this->onValue;
         }
-
-        if ($model->save()) {
+        $saved = $model->save();
+        if ($saved) {
             if ($this->setFlash) {
                 Yii::$app->session->setFlash('success', $this->flashSuccess);
             }
@@ -131,16 +134,23 @@ class ToggleAction extends Action
                 Yii::$app->session->setFlash('error', $this->flashError);
             }
         }
-        var_dump($model);
-        exit;
+        if ($saved && $this->afterSave instanceof Closure) {
+            call_user_func($this->afterSave, $model, $attribute);
+        }
         if (Yii::$app->request->getIsAjax()) {
+            if ($field = Yii::$app->request->get('output_field')) {
+                \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+                return [$field => $model->$field];
+            }
             Yii::$app->end();
         }
         /* @var $controller \yii\web\Controller */
         $controller = $this->controller;
-        if (!empty($this->redirect)) {
+        if ( ! empty($this->redirect)) {
             return $controller->redirect($this->redirect);
         }
+
         return $controller->redirect(Yii::$app->request->getReferrer());
     }
 }

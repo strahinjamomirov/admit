@@ -29,7 +29,7 @@ class UserIp extends \yii\db\ActiveRecord
         return [
             [['ip'], 'required'],
             [['ip'], 'string', 'max' => 100],
-            [['is_banned'], 'string', 'max' => 4],
+            [['is_banned'], 'integer'],
         ];
     }
 
