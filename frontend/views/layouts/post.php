@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: strahinja
- * Date: 21.6.17.
- * Time: 15.34
- */
 
 $this->beginContent( '@app/views/layouts/main.php' ); ?>
     <section class="mainContent full-width clearfix article">

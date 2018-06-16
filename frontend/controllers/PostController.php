@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: strahinja
- * Date: 5/24/18
- * Time: 9:57 PM
- */
 
 namespace frontend\controllers;
 
@@ -68,8 +62,8 @@ class PostController extends Controller
     {
         $render = 'index';
 
-        $query = Post::find()->andWhere(['status' => 'publish'])
-            ->andWhere(['<=', 'date', date('Y-m-d H:i:s')])
+        $query = Post::find()
+            ->andWhere(['<=', 'date', date('Y-m-d')])
             ->orderBy(['id' => SORT_DESC]);
 
         $countQuery = clone $query;
@@ -92,13 +86,12 @@ class PostController extends Controller
     /**
      * Displays a single Post model.
      *
-     * @param null    $slug Post slug
      * @param integer $id   Post ID
      *
      * @throws \yii\web\NotFoundHttpException
      * @return mixed
      */
-    public function actionView($id = null, $slug = null, $category = null)
+    public function actionView($id = null)
     {
         $render = 'view';
         $comment = new Comment();
@@ -106,7 +99,7 @@ class PostController extends Controller
         if ($id) {
             $model = $this->findModel($id);
         } else {
-            throw new NotFoundHttpException(Yii::t('cms', 'The requested page does not exist.'));
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
 
         if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
@@ -137,15 +130,14 @@ class PostController extends Controller
     {
         /** @var Post $model */
         $model = Post::find()
-            ->andWhere(['id' => $id, 'status' => 'publish'])
-            ->andWhere(['<=', 'date', date('Y-m-d H:i:s')])
+            ->where(['id' => $id])
             ->one();
 
         if ($model) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('cms', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
 }

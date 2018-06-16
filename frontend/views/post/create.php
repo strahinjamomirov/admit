@@ -11,6 +11,7 @@
 /* @var $model common\models\Post */
 
 $this->title = Yii::t('app','Add New Confession');
+Yii::$app->params['bodyClass'] = 'confess-page';
 ?>
 <?= $this->render('_form', [
     'model' => $model,

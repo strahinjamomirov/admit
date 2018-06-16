@@ -34,7 +34,8 @@ Yii::$app->params['bodyClass'] = 'login-page';
         <div class="login-box">
             <div class="login-box-body">
 
-                <div class="login-logo"><?= Html::img("../images/logo.png", ['class' => 'login_logo img-responsive', 'alt' => 'Login Logo']) ?>
+                <div class="login-logo"><?= Html::img("../images/logo.png",
+                        ['class' => 'login_logo img-responsive', 'alt' => 'Login Logo']) ?>
                 </div>
 
 
@@ -121,15 +122,17 @@ Yii::$app->params['bodyClass'] = 'login-page';
 </div>
 
 <style>
-    .login-box-body, .register-box-body {
+    /* Login page */
+    .login-page {
+        background: url("/images/background.jpg") fixed !important;
+        background-size: cover !important;
+    }
+
+    /* Login page */
+    .login-box-body {
         background: #fff;
         padding: 20px;
         border-top: 0;
         color: #666;
-    }
-
-    .login-page {
-        background: url("/images/background.jpg") fixed;
-        background-size: cover;
     }
 </style>

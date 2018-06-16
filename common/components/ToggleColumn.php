@@ -1,9 +1,4 @@
 <?php
-/**
- * Project: carcraft
- * Author: Zivorad Antonijevic (zivoradantonijevic@gmail.com)
- * Date: 29.5.15.
- */
 
 namespace common\components;
 
@@ -158,7 +153,7 @@ el.addClass("text-success").addClass("glyphicon-ok").removeClass("glyphicon-remo
     return false;
 });
 JS;
-        $this->grid->view->registerJs($js, View::POS_READY, 'zantonijevic-toggle-column');
+        $this->grid->view->registerJs($js, View::POS_READY, 'admit-toggle-column');
     }
 
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Zivorad Antonijevic
- * Date: 8.12.14.
- * Time: 10.27
- */
 
 $flashes = Yii::$app->session->getAllFlashes();
 if (!($flashes)) {
