@@ -17,8 +17,8 @@ class UserIpSearch extends UserIp
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['ip', 'is_banned'], 'safe'],
+            [['id', 'is_banned'], 'integer'],
+            [['ip'], 'safe'],
         ];
     }
 
@@ -58,11 +58,11 @@ class UserIpSearch extends UserIp
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id'        => $this->id,
+            'is_banned' => $this->is_banned
         ]);
 
-        $query->andFilterWhere(['like', 'ip', $this->ip])
-            ->andFilterWhere(['like', 'is_banned', $this->is_banned]);
+        $query->andFilterWhere(['like', 'ip', $this->ip]);
 
         return $dataProvider;
     }
