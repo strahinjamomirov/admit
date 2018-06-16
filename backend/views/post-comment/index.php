@@ -1,78 +1,82 @@
 <?php
 /**
- * @link http://www.writesdown.com/
- * @author Agiel K. Saputra <13nightevil@gmail.com>
+ * @link      http://www.writesdown.com/
+ * @author    Agiel K. Saputra <13nightevil@gmail.com>
  * @copyright Copyright (c) 2015 WritesDown
- * @license http://www.writesdown.com/license/
+ * @license   http://www.writesdown.com/license/
  */
 
-use yii\grid\GridView;
-use yii\helpers\ArrayHelper;
+use common\components\Box;
+use common\models\PostComment;
+use kartik\grid\GridView;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel cms\models\search\PostComment */
+/* @var $searchModel common\models\search\PostComment */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $postType cms\models\PostType */
-/* @var $post cms\models\Post */
+/* @var $post common\models\Post */
 
-$this->title = Yii::t('cms', '{postType} Comments', ['postType' => $postType->singular_name]);
-$this->params['breadcrumbs'][] = ['label' => $postType->singular_name, 'url' => ['index', 'posttype' => $postType->id]];
-
-if ($post) {
-    $this->params['breadcrumbs'][] = $post->id;
-    $this->title = Yii::t('cms', '{postType} {post} Comments', [
-        'postType' => $postType->singular_name,
-        'post' => $post->id,
-    ]);
-}
-
-$this->params['breadcrumbs'][] = Yii::t('cms', 'Comments');
+$this->title = Yii::t('app', 'Confession Comments');
 ?>
 <div class="post-comment-index">
-    <?= $this->render('_search', ['model' => $searchModel, 'postType' => $postType, 'post' => $post]) ?>
+    <?php Box::begin([
+        'box'   => Box::BOX_PRIMARY,
+        'solid' => false,
+        'label' => $this->title,
+    ]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'id' => 'post-comment-grid-view',
-        'columns' => [
-            ['class' => 'yii\grid\CheckboxColumn'],
-
+        'filterModel'  => $searchModel,
+        'id'           => 'post-comment-grid-view',
+        'columns'      => [
+            'post_id',
             'author:ntext',
-            'email:email',
+            'ip',
             [
                 'attribute' => 'content',
-                'format' => 'html',
-                'value' => function ( $model) {
+                'format'    => 'html',
+                'value'     => function ($model) {
                     return substr(strip_tags($model->content), 0, 150) . '...';
                 },
             ],
-            'date',
             [
-                'attribute' => 'status',
-                'filter' => $searchModel->getStatuses(),
+                'attribute'           => 'date',
+                'format'              => 'raw',
+                'value'               => function ($model) {
+                    /** @var PostComment $model */
+                    return Yii::$app->formatter->asDate($model->date, 'php:d.m.Y');
+                },
+                'filterType'          => GridView::FILTER_DATE,
+                'filterWidgetOptions' => [
+                    'type'          => \kartik\date\DatePicker::TYPE_INPUT,
+                    'pluginOptions' => [
+                        'allowClear'     => true,
+                        'format'         => 'dd.mm.yyyy',
+                        'todayHighlight' => true
+                    ],
+                ],
             ],
-
+            'parent',
+            'likes',
+            'dislikes',
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => Yii::$app->user->can('editor') ? '{view} {update} {delete} {reply}' : '{view}',
-                'buttons' => [
-                    'view' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>',
-                            $model->commentPost->url . '#comment-' . $model->id, [
-                                'title' => Yii::t('yii', 'View'),
-                                'data-pjax' => '0',
-                            ]);
-                    },
-                    'reply' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-share-alt"></span>', [
-                            'reply',
-                            'id' => $model->id,
-                        ], [
-                            'title' => Yii::t('cms', 'Reply'),
-                            'data-pjax' => '0',
+                'attribute'  => 'is_enabled',
+                'trueLabel'  => 'Yes',
+                'falseLabel' => 'No',
+                'class'      => 'common\components\ToggleColumn',
+                'action'     => 'toggle-comment-enabled'
+            ],
+            [
+                'class'    => 'yii\grid\ActionColumn',
+                'template' => '{delete}',
+                'buttons'  => [
+                    'delete' => function ($url, $model) {
+                        /* @var $model \common\models\search\PostComment */
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                            'title'        => Yii::t('yii', 'Delete'),
+                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            'data-method'  => 'post',
+                            'data-pjax'    => '0',
                         ]);
                     },
                 ],
@@ -80,21 +84,6 @@ $this->params['breadcrumbs'][] = Yii::t('cms', 'Comments');
         ],
     ]) ?>
 
-    <?php Pjax::end() ?>
+    <?php Box::end() ?>
 
 </div>
-<?php $this->registerJs('jQuery(".bulk-button").click(function(e){
-    e.preventDefault();
-    if(confirm("' . Yii::t("app", "Are you sure?") . '")){
-        var ids     = $("#post-comment-grid-view").yiiGridView("getSelectedRows");
-        var action  = $(this).parents(".form-group").find(".bulk-action").val();
-        $.ajax({
-            url: "' . Url::to(["bulk-action"]) . '",
-            data: { ids: ids, action: action, _csrf: yii.getCsrfToken() },
-            type:"POST",
-            success: function(data){
-                $.pjax.reload({container:"#post-comment-grid-view"});
-            }
-        });
-    }
-});') ?>

@@ -1,12 +1,13 @@
 <?php
 /**
- * @link http://www.writesdown.com/
+ * @link      http://www.writesdown.com/
  * @copyright Copyright (c) 2015 WritesDown
- * @license http://www.writesdown.com/license/
+ * @license   http://www.writesdown.com/license/
  */
 
 namespace backend\controllers;
 
+use common\components\ToggleAction;
 use common\models\Post;
 use common\models\PostComment;
 use common\models\search\PostComment as PostCommentSearch;
@@ -20,7 +21,7 @@ use yii\web\NotFoundHttpException;
  * PostCommentController, controlling the actions for PostComment model.
  *
  * @author Agiel K. Saputra <13nightevil@gmail.com>
- * @since 0.1.0
+ * @since  0.1.0
  */
 class PostCommentController extends Controller
 {
@@ -34,17 +35,28 @@ class PostCommentController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
+                        'actions' => ['index', 'delete','toggle-comment'],
+                        'allow'   => true,
+                        'roles'   => ['@'],
                     ],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::class,
+            'verbs'  => [
+                'class'   => VerbFilter::class,
                 'actions' => [
                     'delete' => ['post']
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'toggle-comment-enabled' => [
+                'class'      => ToggleAction::class,
+                'modelClass' => PostComment::class,
+                'attribute'  => 'is_enabled'
             ],
         ];
     }
@@ -55,6 +67,7 @@ class PostCommentController extends Controller
      * If there is post_id the action will generate list of all PostComment models based on post_id.
      *
      * @param null|integer $post Post ID
+     *
      * @throws \yii\web\NotFoundHttpException
      * @return string
      */
@@ -71,8 +84,8 @@ class PostCommentController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $postId);
 
         return $this->render('index', [
-            'post' => $post,
-            'searchModel' => $searchModel,
+            'post'         => $post,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -83,30 +96,13 @@ class PostCommentController extends Controller
      * If the model is not found, a 404 HTTP exception will be thrown.
      *
      * @param integer $id
+     *
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findPost($id)
     {
         if (($model = Post::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-
-    /**
-     * Finds the PostComment model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     *
-     * @param integer $id
-     * @return PostComment the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = PostComment::findOne($id)) !== null) {
             return $model;
         }
 
@@ -137,6 +133,24 @@ class PostCommentController extends Controller
         }
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the PostComment model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     *
+     * @param integer $id
+     *
+     * @return PostComment the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = PostComment::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
 }
