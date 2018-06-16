@@ -41,11 +41,3 @@ AdminLteAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
-
-<style>
-    @media print {
-        a[href]:after {
-            content: none !important;
-        }
-    }
-</style>
