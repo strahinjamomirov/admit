@@ -183,6 +183,25 @@ footer li {
     cursor: pointer;
 }
 
+.social-image-facebook {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding-top: 10px;
+}
+
+.social-image-instagram {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding-top: 50px;
+}
+
+.social-image-site{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .copyRight {
     display: block;
     background-color: #041319;
@@ -216,46 +235,55 @@ footer li {
 
 /***** HEADER START *****/
 
-#top-header {
+/* NAVBAR CHANGES */
+.navbar-brand {
+    padding-top: 0;
+}
+
+.navbar-toggle {
+    border-color: #ffffff;
+    background-color: #ffffff;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #000000;
+}
+
+#menuBar {
+    margin-bottom: 0;
+}
+
+#pageTop {
     background-color: #333;
-    width: 100%;
 }
 
-#nav-wrap h1 a {
-    display: block;
+.topList {
+    display: table-row;
+}
+
+.topList li {
+    display: inline-block;
+    height: 35px;
+    list-style-type: none;
+    margin: 0 10px;
+    vertical-align: middle;
+    line-height: 32px;
+}
+
+.topList li a {
     text-decoration: none;
-
+    color: #cacaca;
+    border-bottom: 2px solid transparent;
+    display: block;
+    border-bottom: 2px solid #fff;
+    opacity: 1;
 }
 
-#main-logo {
-    float: left;
-    margin-left: -25px;
-}
-
-#nav-wrap {
-    width: 940px;
-    height: 50px;
-    margin: 0 auto;
-    position: relative;
-}
-
-h1 {
-    margin: 0;
-}
-
-#nav-items {
-    float: right;
-}
-
-.nav-item.last {
-    border-right: 1px solid #444;
-}
-
-.nav-item {
-    float: right;
-    border-left: 1px solid #444;
-    border-right: 1px solid #151515;
-    height: 50px;
+#second-navbar {
+    box-shadow: 0 3px 1px rgba(0, 0, 0, .3);
+    background-color: #55f;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #confess {
@@ -266,53 +294,12 @@ h1 {
     background: url(/images/confess.png) no-repeat 130px 8px;
     color: #cacaca;
     border-right: 1px solid #000;
-    line-height: 50px;
     text-decoration: none;
-}
-
-#sticky-nav {
-    position: absolute;
-    box-shadow: 0 3px 1px rgba(0, 0, 0, .3);
-    background-color: #55f;
-    width: 100%;
-    z-index: 0;
-}
-
-#width-limit {
-    width: 940px;
-    margin: 0 auto;
-}
-
-.options {
-    float: left;
-    width: 580px;
-}
-
-.options ul {
-    display: table-row;
 }
 
 dl, menu, ol, ul {
     margin: 0;
     list-style-type: none;
-}
-
-.options ul li {
-    display: inline-block;
-    height: 35px;
-    list-style-type: none;
-    margin: 0 10px;
-    vertical-align: middle;
-    line-height: 32px;
-}
-
-.options ul li a {
-    text-decoration: none;
-    color: #fff;
-    border-bottom: 2px solid transparent;
-    display: block;
-    border-bottom: 2px solid #fff;
-    opacity: 1;
 }
 
 /***** HEADER END *****/

@@ -11,24 +11,37 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 ?>
-<header id="top-header">
-    <div id="nav-wrap">
-        <h1>
-            <a id="main-logo" href="<?= Url::to(['post/index']) ?>"><?= Html::img('/images/logo.png',
-                    ['class' => 'img img-responsive', 'style' => ['width' => '290px', 'height' => '50px']]) ?></a>
-        </h1>
+<header id="pageTop" class="header-wrapper">
+    <nav id="menuBar" class="navbar lightHeader" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>"><?= Html::img('/images/logo.png',
+                    ['alt' => 'Confessr', 'class' => 'img img-responsive', 'style' => ['width' => '320px', 'height' => '50px']]) ?>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
 
-        <div id="nav-items">
-            <div class="nav-item last">
-                <a id="confess" href="<?= Url::to(['post/create']) ?>"><?= Yii::t('app', 'Confess')?></a>
+                    <li class="active dropdown">
+                        <a id="confess" class="dropdown-toggle"
+                        aria-haspopup="true" aria-expanded="false" href="<?= Url::to(['post/create']) ?>"><?= Yii::t('app', 'Confess')?>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div id="section-nav">
-        <div id="sticky-nav" class="absolute" style="z-index:0">
-            <div id="width-limit">
-                <div class="options">
-                    <ul>
+    </nav>
+    <div class="top-info-bar bg-color-7 hidden-xs">
+        <div class="container">
+            <div class="row" id="second-navbar">
+                <div class="col-sm-7">
+                    <ul class="list-inline topList">
                         <li>
                             <a href="<?= Url::to(['post/new']) ?>">
                                 <?= Yii::t('app', 'New') ?>

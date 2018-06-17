@@ -10,22 +10,19 @@ use yii\helpers\Html;
         <div class="container">
             <div class="row">
                 <div class="col-md-4 foot-sub-div-logo">
-                    <ul id="foot-logo">
-                        <li>
-                            <?= Html::img('/images/logo.png', ['class' => 'img img-responsive']) ?>
-                        </li>
-                        <li id="caption"><?= Yii::t('app', 'Confessr.com') ?><br><?= Yii::t('app',
-                                'Anonymous personal confessions') ?></li>
-                    </ul>
+                    <a href="#">
+                        <div>
+                            <?= Html::img('/images/logo.png', ['class' => 'img img-responsive social-image-site']) ?>
+                        </div>
+                        <div id="caption"><?= Yii::t('app', 'Confessr.com') ?><br><?= Yii::t('app',
+                                'Anonymous personal confessions') ?></div>
+                    </a>
                 </div>
                 <div class="col-md-4">
                     <a href="#">
                         <?= Html::img('/images/facebook.png',
                             [
-                                'class' => 'img img-responsive',
-                                'style' => 'margin-left: auto;
-    margin-right: auto;
-    width: 40%; padding-top: 10px;'
+                                'class' => 'img img-responsive social-image-facebook'
                             ]) ?>
                     </a>
 
@@ -34,10 +31,7 @@ use yii\helpers\Html;
                     <a href="#">
                         <?= Html::img('/images/instagram.png',
                             [
-                                'class' => 'img img-responsive',
-                                'style' => 'margin-left: auto;
-    margin-right: auto;
-    width: 40%; padding-top: 50px;'
+                                'class' => 'img img-responsive social-image-instagram'
                             ]) ?>
                     </a>
                 </div>
