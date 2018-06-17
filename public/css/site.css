@@ -7,10 +7,13 @@ body {
     min-height: 100%;
     height: auto;
     margin: 0 auto -60px;
-    padding: 0 0 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
 }
 
 .wrap > .container {
+    flex: 1 0 auto;
     padding: 70px 15px 20px;
 }
 
@@ -119,13 +122,13 @@ a.desc:after {
     outline: none;
 }
 
-/* Confess page cover*/
+/***** CONFESS PAGE START *****/
+
 .confess-page {
     background: url("../images/background.jpg") fixed;
     background-size: cover;
 }
 
-/* Confess page form*/
 .confess-container {
     position: relative;
     width: 300px;
@@ -160,16 +163,9 @@ a.desc:after {
     -ms-transform: rotateZ(-2deg);
 }
 
-/* Footer */
-.wrap {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-}
+/***** CONFESS PAGE END *****/
 
-.content-wrapper{
-    flex: 1 0 auto;
-}
+/***** FOOTER START *****/
 
 footer {
     width: 100%;
@@ -180,7 +176,7 @@ footer {
 
 footer a, footer a:hover {
     text-decoration: none;
-    color:inherit;
+    color: inherit;
 }
 
 footer li {
@@ -192,6 +188,7 @@ footer li {
     background-color: #041319;
     padding: 20px 0;
 }
+
 .footerInfoArea {
     width: 100%;
     color: #fefec7;
@@ -200,7 +197,7 @@ footer li {
 }
 
 .foot-sub-div-logo {
-    border-right: 1px solid rgba(100,100,100,0.2);
+    border-right: 1px solid rgba(100, 100, 100, 0.2);
 }
 
 #caption {
@@ -215,7 +212,10 @@ footer li {
     font-size: 12px;
 }
 
-/* Header */
+/***** FOOTER END *****/
+
+/***** HEADER START *****/
+
 #top-header {
     background-color: #333;
     width: 100%;
@@ -314,3 +314,5 @@ dl, menu, ol, ul {
     border-bottom: 2px solid #fff;
     opacity: 1;
 }
+
+/***** HEADER END *****/

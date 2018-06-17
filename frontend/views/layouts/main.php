@@ -14,13 +14,11 @@ use codezeen\yii2\adminlte\widgets\Alert;
 ?>
 <?php $this->beginContent('@app/views/layouts/blank.php') ?>
 <div class="wrap">
-        <?= $this->render('main-header') ?>
-        <div class="content-wrapper">
-            <section class="content clearfix">
-                <?= Alert::widget() ?>
-                <?= $content ?>
-            </section>
-        </div>
-        <?= $this->render('main-footer') ?>
+    <?= $this->render('main-header') ?>
+    <div class="container">
+        <?= Alert::widget() ?>
+        <?= $content ?>
+    </div>
+    <?= $this->render('main-footer') ?>
 </div>
 <?php $this->endContent() ?>
