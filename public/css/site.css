@@ -164,7 +164,7 @@ a.desc:after {
 footer {
     width: 100%;
     bottom: 0;
-    height: 250px;
+    /*height: 250px;*/
     position: absolute;
     background: rgb(20, 20, 20);
 }
