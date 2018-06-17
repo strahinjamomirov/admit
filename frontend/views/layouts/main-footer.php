@@ -48,7 +48,7 @@ use yii\helpers\Html;
     <div class="copyRight clearfix">
         <div class="container">
             <div class="row">
-                <div class="col-sm-offset-1 col-sm-7 col-xs-12" id="copyright">
+                <div class="col-sm-7 col-xs-12" id="copyright">
                     <strong>Copyright &copy; <?= date('Y') . ' ' . Yii::$app->name ?>.</strong> All rights reserved.
                     <a href="<?= Url::to(['site/terms-of-use']) ?>">
                         <?= Yii::t('app', 'Terms of use') ?>
@@ -66,18 +66,3 @@ use yii\helpers\Html;
         </div>
     </div>
 </footer>
-
-<style rel="inline-ready">
-    .copyRight {
-        display: block;
-        background-color: #041319;
-        padding: 20px 0;
-    }
-    .footerInfoArea {
-        width: 100%;
-        height: 200px;
-        color: #fefec7;
-        font-size: 14px;
-        padding: 20px 0 60px;
-    }
-</style>
