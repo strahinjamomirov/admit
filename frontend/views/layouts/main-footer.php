@@ -6,8 +6,8 @@ use yii\helpers\Html;
 
 ?>
 <footer>
-    <div class="row" id="footer-wrap">
-        <div class="col-md-offset-3 col-md-6">
+    <div class="footerInfoArea full-width clearfix">
+        <div class="container">
             <div class="row">
                 <div class="col-md-4 foot-sub-div-logo">
                     <ul id="foot-logo">
@@ -45,20 +45,39 @@ use yii\helpers\Html;
         </div>
     </div>
 
-    <div class="row" id="foot-bottom-div">
-        <div class="col-md-offset-3 col-md-6" id="copyright">
-            <strong>Copyright &copy; <?= date('Y') . ' ' . Yii::$app->name ?>.</strong> All rights reserved.
-            <a href="<?= Url::to(['site/terms-of-use']) ?>">
-                <?= Yii::t('app', 'Terms of use') ?>
-            </a>
-            &nbsp; · &nbsp;
-            <a href="<?= Url::to(['site/faq']) ?>"><?= Yii::t('app', 'FAQ') ?></a>
-            &nbsp; · &nbsp;
-            <a href="<?= Url::to(['site/contact']) ?>"><?= Yii::t('app', 'Contact') ?></a>
-            &nbsp; · &nbsp;
-            <a href="<?= Url::to(['site/about-us']) ?>"><?= Yii::t('app', 'About us') ?></a>
-            &nbsp; · &nbsp;
-            <a href="<?= Url::to(['site/marketing']) ?>"><?= Yii::t('app', 'Marketing') ?></a>
+    <div class="copyRight clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-7 col-xs-12" id="copyright">
+                    <strong>Copyright &copy; <?= date('Y') . ' ' . Yii::$app->name ?>.</strong> All rights reserved.
+                    <a href="<?= Url::to(['site/terms-of-use']) ?>">
+                        <?= Yii::t('app', 'Terms of use') ?>
+                    </a>
+                    &nbsp; · &nbsp;
+                    <a href="<?= Url::to(['site/faq']) ?>"><?= Yii::t('app', 'FAQ') ?></a>
+                    &nbsp; · &nbsp;
+                    <a href="<?= Url::to(['site/contact']) ?>"><?= Yii::t('app', 'Contact') ?></a>
+                    &nbsp; · &nbsp;
+                    <a href="<?= Url::to(['site/about-us']) ?>"><?= Yii::t('app', 'About us') ?></a>
+                    &nbsp; · &nbsp;
+                    <a href="<?= Url::to(['site/marketing']) ?>"><?= Yii::t('app', 'Marketing') ?></a>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
+
+<style rel="inline-ready">
+    .copyRight {
+        display: block;
+        background-color: #041319;
+        padding: 20px 0;
+    }
+    .footerInfoArea {
+        width: 100%;
+        height: 200px;
+        color: #fefec7;
+        font-size: 14px;
+        padding: 20px 0 60px;
+    }
+</style>

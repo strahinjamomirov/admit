@@ -174,14 +174,6 @@ footer a, footer a:hover {
     color:inherit;
 }
 
-#footer-wrap {
-    margin: 0 auto;
-    height: 200px;
-    color: #fefec7;
-    font-size: 14px;
-    padding-top: 20px;
-}
-
 .foot-sub-div-logo {
     border-right: 1px solid rgba(100,100,100,0.2);
 }
@@ -197,14 +189,7 @@ footer li {
     padding-top: 5px;
 }
 
-#foot-bottom-div {
-    height: 50px;
-    width: 100%;
-    background: rgb(15, 15, 15);
-}
-
 #copyright {
-    padding-top: 12px;
     color: #888;
     font-size: 12px;
 }
