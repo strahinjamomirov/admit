@@ -158,5 +158,153 @@ a.desc:after {
     -webkit-transform: rotateZ(-2deg);
     -moz-transform: rotateZ(-2deg);
     -ms-transform: rotateZ(-2deg);
+}
 
+/* Footer */
+footer {
+    width: 100%;
+    bottom: 0;
+    height: 250px;
+    position: absolute;
+    background: rgb(20, 20, 20);
+}
+
+footer a, footer a:hover {
+    text-decoration: none;
+    color:inherit;
+}
+
+#footer-wrap {
+    margin: 0 auto;
+    height: 200px;
+    color: #fefec7;
+    font-size: 14px;
+    padding-top: 20px;
+}
+
+.foot-sub-div-logo {
+    border-right: 1px solid rgba(100,100,100,0.2);
+}
+
+footer li {
+    cursor: pointer;
+}
+
+#caption {
+    color: #fff;
+    text-align: center;
+    opacity: 0.7;
+    padding-top: 5px;
+}
+
+#foot-bottom-div {
+    height: 50px;
+    width: 100%;
+    background: rgb(15, 15, 15);
+}
+
+#copyright {
+    padding-top: 12px;
+    color: #888;
+    font-size: 12px;
+}
+
+/* Header */
+#top-header {
+    background-color: #333;
+    width: 100%;
+}
+
+#nav-wrap h1 a {
+    display: block;
+    text-decoration: none;
+
+}
+
+#main-logo {
+    float: left;
+    margin-left: -25px;
+}
+
+#nav-wrap {
+    width: 940px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+}
+
+#nav-items {
+    float: right;
+}
+
+.nav-item.last {
+    border-right: 1px solid #444;
+}
+
+.nav-item {
+    float: right;
+    border-left: 1px solid #444;
+    border-right: 1px solid #151515;
+    height: 50px;
+}
+
+#confess {
+    width: 170px;
+    padding-left: 10px;
+    display: block;
+    font-size: 18px;
+    background: url(/images/confess.png) no-repeat 130px 8px;
+    color: #cacaca;
+    border-right: 1px solid #000;
+    line-height: 50px;
+    text-decoration: none;
+}
+
+#sticky-nav {
+    position: absolute;
+    box-shadow: 0 3px 1px rgba(0, 0, 0, .3);
+    background-color: #55f;
+    width: 100%;
+    z-index: 0;
+}
+
+#width-limit {
+    width: 940px;
+    margin: 0 auto;
+}
+
+.options {
+    float: left;
+    width: 580px;
+}
+
+.options ul {
+    display: table-row;
+}
+
+dl, menu, ol, ul {
+    margin: 0;
+    list-style-type: none;
+}
+
+.options ul li {
+    display: inline-block;
+    height: 35px;
+    list-style-type: none;
+    margin: 0 10px;
+    vertical-align: middle;
+    line-height: 32px;
+}
+
+.options ul li a {
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 2px solid transparent;
+    display: block;
+    border-bottom: 2px solid #fff;
+    opacity: 1;
 }
