@@ -3,8 +3,10 @@
 namespace frontend\controllers;
 
 
+use common\components\IpHelper;
 use common\models\Post;
 use common\models\PostComment as Comment;
+use dominus77\sweetalert2\Alert;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -48,8 +50,22 @@ class PostController extends Controller
     {
         $model = new Post();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $ipAddress = Yii::$app->request->userIP;
+            $checkBlacklist = IpHelper::checkBlacklist($ipAddress);
+            $checkNumber = IpHelper::checkConfessesForDay($ipAddress);
+            if ($checkBlacklist) {
+                Yii::$app->session->setFlash(Alert::TYPE_ERROR, Yii::t('app', 'Your ip is blacklisted.'));
+                return $this->redirect(['create']);
+            }
+            if ($checkNumber) {
+                Yii::$app->session->setFlash(Alert::TYPE_WARNING,
+                    Yii::t('app', 'You have already posted three confessions for today'));
+                return $this->redirect(['create']);
+            }
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', ['model' => $model]);
@@ -86,7 +102,7 @@ class PostController extends Controller
     /**
      * Displays a single Post model.
      *
-     * @param integer $id   Post ID
+     * @param integer $id Post ID
      *
      * @throws \yii\web\NotFoundHttpException
      * @return mixed

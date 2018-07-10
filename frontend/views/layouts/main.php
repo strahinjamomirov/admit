@@ -7,7 +7,7 @@
  */
 
 
-use codezeen\yii2\adminlte\widgets\Alert;
+use dominus77\sweetalert2\Alert;
 
 /* @var $this yii\web\View */
 /* @var $content string */
@@ -16,7 +16,13 @@ use codezeen\yii2\adminlte\widgets\Alert;
 <div class="wrap">
     <?= $this->render('main-header') ?>
     <div class="container">
-        <?= Alert::widget() ?>
+        <?= Alert::widget([
+            'useSessionFlash' => true,
+            'options'         => [
+                'allowOutsideClick' => true,
+                'timer'             => 1000
+            ]
+        ]) ?>
         <?= $content ?>
     </div>
     <?= $this->render('main-footer') ?>
