@@ -42,6 +42,19 @@ class PostController extends Controller
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class'           => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+
+    /**
      * Action for creating new post.
      *
      * @return string|\yii\web\Response

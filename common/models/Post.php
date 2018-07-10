@@ -28,6 +28,7 @@ use yii\helpers\Html;
 class Post extends ActiveRecord
 {
 
+    public $verifyCode;
     /**
      * @inheritdoc
      */
@@ -45,7 +46,8 @@ class Post extends ActiveRecord
             ['views_count', 'default', 'value' => 0],
             ['likes', 'default', 'value' => 0],
             ['dislikes', 'default', 'value' => 0],
-            ['featured', 'default', 'value' => 0]
+            ['featured', 'default', 'value' => 0],
+            ['verifyCode', 'captcha']
         ];
     }
 
