@@ -62,7 +62,7 @@ class PostController extends Controller
     public function actionCreate()
     {
         $model = new Post();
-
+        $model->scenario = 'create';
         if ($model->load(Yii::$app->request->post())) {
             $ipAddress = Yii::$app->request->userIP;
             $checkBlacklist = IpHelper::checkBlacklist($ipAddress);
@@ -167,6 +167,64 @@ class PostController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    /**
+     * Function that increases number of likes
+     *
+     */
+    public function actionLikePost()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            /** @var Post $post */
+            $post = Post::find()->where(['id' => $data['id']])->one();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (!$post) {
+                return [
+                    'notExisting' => true
+                ];
+            }
+
+            $post->likes = $post->likes + 1;
+            $post->scenario = 'default';
+            $post->save();
+            return [
+                'id'             => $post->id,
+                'increasedLikes' => $post->likes,
+                'notExisting'    => false
+            ];
+        }
+    }
+
+    /**
+     * Function that increases number of dislikes
+     *
+     */
+    public function actionDislikePost()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            /** @var Post $post */
+            $post = Post::find()->where(['id' => $data['id']])->one();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (!$post) {
+                return [
+                    'notExisting' => true
+                ];
+            }
+
+            $post->dislikes = $post->dislikes + 1;
+            $post->scenario = 'default';
+            $post->save();
+            return [
+                'id'                => $post->id,
+                'increasedDislikes' => $post->dislikes,
+                'notExisting'       => false
+            ];
+        }
     }
 
 }

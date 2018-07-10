@@ -27,6 +27,8 @@ use yii\helpers\Html;
  */
 class Post extends ActiveRecord
 {
+    const SCENARIO_DEFAULT = 'default';
+    const SCENARIO_CREATE = 'create';
 
     public $verifyCode;
     /**
@@ -48,6 +50,14 @@ class Post extends ActiveRecord
             ['dislikes', 'default', 'value' => 0],
             ['featured', 'default', 'value' => 0],
             ['verifyCode', 'captcha']
+        ];
+    }
+
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_DEFAULT => ['content'],
+            self::SCENARIO_CREATE => ['content', 'verifyCode'],
         ];
     }
 
