@@ -6,6 +6,7 @@ namespace frontend\controllers;
 use common\components\IpHelper;
 use common\models\Post;
 use common\models\PostComment as Comment;
+use common\models\UserIp;
 use dominus77\sweetalert2\Alert;
 use Yii;
 use yii\data\Pagination;
@@ -76,6 +77,20 @@ class PostController extends Controller
                     Yii::t('app', 'You have already posted three confessions for today'));
                 return $this->redirect(['create']);
             }
+
+            $checkExistingIpAddress = UserIp::find()->where(['ip' => $ipAddress])->one();
+            if (!$checkExistingIpAddress) {
+                $res = file_get_contents('https://www.iplocate.io/api/lookup/87.116.177.20');
+                $res = json_decode($res);
+                if ($res) {
+                    $newUserIp = new UserIp();
+                    $newUserIp->ip = $ipAddress;
+                    $newUserIp->country = isset($res['country']) ? $res['country'] : null;
+                    $newUserIp->save();
+                }
+            }
+
+
             if ($model->save()) {
                 return $this->redirect(['index']);
             }

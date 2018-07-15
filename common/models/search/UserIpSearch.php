@@ -18,7 +18,7 @@ class UserIpSearch extends UserIp
     {
         return [
             [['id', 'is_banned'], 'integer'],
-            [['ip'], 'safe'],
+            [['ip', 'country'], 'safe'],
         ];
     }
 
@@ -63,6 +63,7 @@ class UserIpSearch extends UserIp
         ]);
 
         $query->andFilterWhere(['like', 'ip', $this->ip]);
+        $query->andFilterWhere(['like', 'country', $this->country]);
 
         return $dataProvider;
     }

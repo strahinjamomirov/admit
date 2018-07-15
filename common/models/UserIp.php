@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $ip
+ * @property string $country
  * @property int $is_banned
  */
 class UserIp extends \yii\db\ActiveRecord
@@ -29,6 +30,7 @@ class UserIp extends \yii\db\ActiveRecord
         return [
             [['ip'], 'required'],
             [['ip'], 'string', 'max' => 100],
+            [['country'], 'string', 'max' => 64],
             [['is_banned'], 'integer'],
         ];
     }
@@ -42,6 +44,7 @@ class UserIp extends \yii\db\ActiveRecord
             'id' => 'ID',
             'ip' => 'Ip',
             'is_banned' => 'Is Banned',
+            'country' => 'Country',
         ];
     }
 }

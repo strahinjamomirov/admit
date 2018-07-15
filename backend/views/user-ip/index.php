@@ -23,6 +23,7 @@ $this->title = 'User Ips';
             ['class' => 'yii\grid\SerialColumn'],
 
             'ip',
+            'country',
             [
                 'attribute'  => 'is_banned',
                 'trueLabel'  => 'Yes',
