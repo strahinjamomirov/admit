@@ -66,37 +66,79 @@ class PostController extends Controller
         $model->scenario = 'create';
         if ($model->load(Yii::$app->request->post())) {
             $ipAddress = Yii::$app->request->userIP;
-            $checkBlacklist = IpHelper::checkBlacklist($ipAddress);
-            $checkNumber = IpHelper::checkConfessesForDay($ipAddress);
-            if ($checkBlacklist) {
-                Yii::$app->session->setFlash(Alert::TYPE_ERROR, Yii::t('app', 'Your ip is blacklisted.'));
-                return $this->redirect(['create']);
-            }
-            if ($checkNumber) {
-                Yii::$app->session->setFlash(Alert::TYPE_WARNING,
-                    Yii::t('app', 'You have already posted three confessions for today'));
-                return $this->redirect(['create']);
-            }
 
-            $checkExistingIpAddress = UserIp::find()->where(['ip' => $ipAddress])->one();
-            if (!$checkExistingIpAddress) {
-                $res = file_get_contents('https://www.iplocate.io/api/lookup/87.116.177.20');
-                $res = json_decode($res);
-                if ($res) {
-                    $newUserIp = new UserIp();
-                    $newUserIp->ip = $ipAddress;
-                    $newUserIp->country = isset($res['country']) ? $res['country'] : null;
-                    $newUserIp->save();
-                }
+            $checkBlacklistMessage = $this->checkBlacklisted($ipAddress);
+            if ($checkBlacklistMessage) {
+                return $checkBlacklistMessage;
             }
-
-
+            $checkNumberMessage = $this->checkNumber($ipAddress);
+            if ($checkNumberMessage) {
+                return $checkNumberMessage;
+            }
+            $this->checkExistingIp($ipAddress);
+            $model->author_ip = $ipAddress;
             if ($model->save()) {
                 return $this->redirect(['index']);
             }
         }
 
         return $this->render('create', ['model' => $model]);
+    }
+
+    /**
+     * Redirecting for banned ip.
+     *
+     * @param $ipAddress
+     *
+     * @return \yii\web\Response
+     */
+    private function checkBlacklisted($ipAddress)
+    {
+        $checkBlacklist = IpHelper::checkBlacklist($ipAddress);
+        if ($checkBlacklist) {
+            Yii::$app->session->setFlash(Alert::TYPE_ERROR, Yii::t('app', 'Your ip is blacklisted.'));
+            return $this->redirect(['create']);
+        }
+        return null;
+    }
+
+    /**
+     *
+     * Redirecting for more than three confesses.
+     *
+     * @param $ipAddress
+     *
+     * @return \yii\web\Response
+     */
+    private function checkNumber($ipAddress)
+    {
+        $checkNumber = IpHelper::checkConfessesForDay($ipAddress);
+        if ($checkNumber) {
+            Yii::$app->session->setFlash(Alert::TYPE_WARNING,
+                Yii::t('app', 'You have already posted three confessions for today'));
+            return $this->redirect(['create']);
+        }
+        return null;
+    }
+
+    /**
+     * Saving country for new user ip.
+     *
+     * @param $ipAddress
+     */
+    private function checkExistingIp($ipAddress)
+    {
+        $checkExistingIpAddress = UserIp::find()->where(['ip' => $ipAddress])->one();
+        if (!$checkExistingIpAddress) {
+            $res = file_get_contents('https://www.iplocate.io/api/lookup/87.116.177.20');
+            $res = json_decode($res);
+            if ($res) {
+                $newUserIp = new UserIp();
+                $newUserIp->ip = $ipAddress;
+                $newUserIp->country = $res->country;
+                $newUserIp->save();
+            }
+        }
     }
 
     /**

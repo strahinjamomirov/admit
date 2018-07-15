@@ -23,7 +23,7 @@ class IpHelper
      */
     public static function checkBlacklist($ipAddress)
     {
-        $result = UserIp::find()->where(['ip' => $ipAddress])->one();
+        $result = UserIp::find()->where(['ip' => $ipAddress])->andWhere(['is_banned' => 1])->one();
         if ($result) {
             return true;
         }
@@ -41,7 +41,7 @@ class IpHelper
     {
         $currentDate = date('Y-m-d');
 
-        $result = Post::find()->where(['ip' => $ipAddress])->andWhere(['date' => $currentDate])->count();
+        $result = Post::find()->where(['author_ip' => $ipAddress])->andWhere(['date' => $currentDate])->count();
         if ($result >= 3) {
             return true;
         }
