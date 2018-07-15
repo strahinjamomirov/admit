@@ -189,7 +189,12 @@ class PostController extends Controller
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
 
-        if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
+        if ($comment->load(Yii::$app->request->post())) {
+            $ipAddress = Yii::$app->request->userIP;
+            $checkBlacklist = $this->checkBlacklisted($ipAddress);
+            if ($checkBlacklist) {
+                return $checkBlacklist;
+            }
             if (!$comment->parent) {
                 $model->comment_count++;
             }
