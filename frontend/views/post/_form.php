@@ -14,7 +14,7 @@ use yii\captcha\Captcha;
                     <?= $form->field($model, 'content')->textarea([
                         'rows'        => '12',
                         'class'       => 'form-control',
-                        'placeholder' => 'Enter your confession!(Up to 2000 characters)'
+                        'placeholder' => 'Enter your confession!(Up to 1000 characters)'
                     ])->label('Enter Your Confession') ?>
                 </div>
                 <div class="col-sm-12">

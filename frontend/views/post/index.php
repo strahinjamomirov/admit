@@ -39,7 +39,7 @@ $this->registerJs("var _csrf = '" . Yii::$app->request->getCsrfToken() . "';", V
 <div class="post-index">
     <?php if ($posts): ?>
         <?php foreach ($posts as $post):
-            $date = date('H', strtotime($post->date));
+            $date = date('m/d/Y', strtotime($post->date));
             ?>
             <div class="confession">
                 <div class="confession-top-content">

@@ -195,9 +195,15 @@ class PostController extends Controller
             if ($checkBlacklist) {
                 return $checkBlacklist;
             }
+            if (!$comment->save()) {
+                Yii::$app->session->setFlash(Alert::TYPE_ERROR, Yii::t('app', 'There was an error while commenting.'));
+                return $this->redirect(['index']);
+            }
+
             if (!$comment->parent) {
                 $model->comment_count++;
             }
+
             if ($model->save()) {
                 $this->refresh();
             }
