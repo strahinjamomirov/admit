@@ -18,6 +18,8 @@ use yii\widgets\LinkPager;
 
 $this->title = Html::encode(Yii::$app->params['siteTitle']);
 Yii::$app->controller->layout = 'post';
+Yii::$app->params['bodyClass'] = 'confess-page';
+
 $this->registerJs("
 
 $('body').on('click', '.praise', function () {
@@ -237,7 +239,7 @@ $this->registerJs("var _csrf = '" . Yii::$app->request->getCsrfToken() . "';", V
 
     .comments-icon {
         background-size: 23px;
-        background: url(/images/comment_empty.png) no-repeat 63px 10px;
+        background: url(/images/comment_empty.png) no-repeat 45px;
         opacity: 0.8;
     }
 

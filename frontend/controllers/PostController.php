@@ -150,6 +150,7 @@ class PostController extends Controller
 
         $query = Post::find()
             ->andWhere(['<=', 'date', date('Y-m-d')])
+            ->andWhere(['is_enabled' => 1])
             ->orderBy(['id' => SORT_DESC]);
 
         $countQuery = clone $query;
