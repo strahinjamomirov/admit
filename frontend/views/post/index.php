@@ -43,7 +43,7 @@ $this->registerJs("var _csrf = '" . Yii::$app->request->getCsrfToken() . "';", V
             ?>
             <div class="confession">
                 <div class="confession-top-content">
-                    <a class="confession-id" href="<?= Url::to(['post/view', 'id' => $post->id]) ?>"
+                    <a class="confession-id link-color" href="<?= Url::to(['post/view', 'id' => $post->id]) ?>"
                        target="_blank">#<?= $post->id ?></a>
                     <div class="confession-timestamp"><?= $date ?></div>
                 </div>
