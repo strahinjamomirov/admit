@@ -14,7 +14,7 @@ body {
 
 .wrap > .container {
     flex: 1 0 auto;
-    padding: 70px 15px 20px;
+    padding: 25px 15px 20px;
 }
 
 .footer {
@@ -197,7 +197,7 @@ footer li {
     padding-top: 50px;
 }
 
-.social-image-site{
+.social-image-site {
     margin-left: auto;
     margin-right: auto;
 }
@@ -237,7 +237,9 @@ footer li {
 
 /* NAVBAR CHANGES */
 .navbar-brand {
-    padding-top: 0;
+    color: white;
+    height: 20px;
+    /*padding-top: 0;*/
 }
 
 .navbar-toggle {
@@ -303,3 +305,133 @@ dl, menu, ol, ul {
 }
 
 /***** HEADER END *****/
+
+/***** CONFESSION *****/
+
+.post-index {
+    width: 600px;
+    padding-top: 3px;
+    opacity: 1;
+    display: inline-block;
+    background-color: rgba(50, 50, 50, .7);
+    margin-bottom: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+    float: left;
+}
+
+.confession-actions {
+    border-top: 1px solid rgba(200, 200, 200, .1);
+    height: 40px;
+    line-height: 32px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.confession-id, .confession-timestamp {
+    color: #FEFEFE;
+    opacity: .5;
+    font-size: 12px;
+    transition: opacity .2s linear;
+    text-decoration: none;
+}
+
+.confession {
+    background-color: rgba(50, 50, 50, .2);
+    letter-spacing: 1px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    margin: 10px;
+}
+
+.confession-id {
+    float: left;
+}
+
+.confession-timestamp {
+    float: right;
+}
+
+.confession-top-content {
+    top: 0;
+    padding: 8px;
+    height: 15px;
+}
+
+.confession-data {
+    width: 100%;
+}
+
+.confession-text {
+    color: #fefec7;
+    padding: 10px 10px 20px;
+}
+
+.confession-values {
+    height: 28px;
+}
+
+.confession-value {
+    width: 25%;
+    text-align: center;
+    color: #FEFEFE;
+    opacity: .65;
+    font-size: 10px;
+    float: left;
+    margin-top: 10px;
+}
+
+.action-separator {
+    width: 0;
+    height: 26px;
+    margin-top: 7px;
+    float: left;
+    border-right: 1px solid rgba(200, 200, 200, .1);
+}
+
+.confession-action {
+    color: #DEDEDE;
+    float: left;
+    font-size: 12px;
+    width: 144px;
+    text-align: center;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.praise .slider {
+    background-color: #3eabff;
+}
+
+.condemn .slider {
+    background-color: #bf2c0f;
+}
+
+.comments-icon {
+    background-size: 23px;
+    background: url(/images/comment_empty.png) no-repeat 45px;
+    opacity: 0.8;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar-content {
+    display: inline-block;
+    float: right;
+    background-color: rgba(50, 50, 50, .7);
+    box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+    margin-left: 15px;
+    width: 300px;
+    padding: 8px 10px;
+    position: relative;
+}
+
+/***** CONFESSION END *****/

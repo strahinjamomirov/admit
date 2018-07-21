@@ -10,6 +10,9 @@ $this->beginContent('@app/views/layouts/main.php'); ?>
 
                 <aside>
                     <div class="rightSidebar">
+                        <div id="sidebar-content">
+
+                        </div>
                     </div>
                 </aside>
             </div>

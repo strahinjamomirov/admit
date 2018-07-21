@@ -21,9 +21,8 @@ use yii\helpers\Url;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>"><?= Html::img('/images/logo.png',
-                    ['alt' => 'Confessr', 'class' => 'img img-responsive', 'style' => ['width' => '320px', 'height' => '50px']]) ?>
-                </a>
+                <p class="navbar-brand">Confessr
+                </p>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
