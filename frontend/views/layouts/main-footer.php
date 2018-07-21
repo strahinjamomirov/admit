@@ -12,7 +12,7 @@ use yii\helpers\Html;
                 <div class="col-md-4 foot-sub-div-logo">
                     <a href="#">
                         <div>
-                            <?= Html::img('/images/logo.png', ['class' => 'img img-responsive social-image-site']) ?>
+                            <?= Html::img('/images/logo.png', ['class' => 'img img-responsive social-image-site', 'width' => '150px']) ?>
                         </div>
                         <div id="caption"><?= Yii::t('app', 'Confessr.com') ?><br><?= Yii::t('app',
                                 'Anonymous personal confessions') ?></div>
