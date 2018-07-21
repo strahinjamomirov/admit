@@ -417,10 +417,10 @@ dl, menu, ol, ul {
     opacity: 0.8;
 }
 
-a, a:hover, a:visited {
-    text-decoration: none;
-    color: white;
-}
+a.link-color:link { color:#FFF; text-decoration:none; font-weight:normal; }
+a.link-color:visited { color: #FFF; text-decoration:none; font-weight:normal; }
+a.link-color:hover { color: #FFF; text-decoration:underline; font-weight:normal; }
+a.link-color:active { color: #FFF; text-decoration:none; font-weight:normal; }
 
 .sidebar-content {
     display: inline-block;

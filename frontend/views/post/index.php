@@ -56,7 +56,7 @@ $this->registerJs("var _csrf = '" . Yii::$app->request->getCsrfToken() . "';", V
                              data-id="<?= $post->id ?>"><?= $post->likes ?></div>
                         <div class="confession-value" id="condemn-count-<?= $post->id ?>"
                              data-id="<?= $post->id ?>"><?= $post->dislikes ?></div>
-                        <a class="confession-value"
+                        <a class="confession-value link-color"
                            href="<?= Url::to(['post/view', 'id' => $post->id]) ?>"><?= $post->comment_count ?></a>
                         <div class="confession-value">share</div>
                     </div>
