@@ -21,8 +21,8 @@ use yii\helpers\Url;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <p class="navbar-brand">Confessr
-                </p>
+                <a class="navbar-brand link-color" href="<?= Yii::$app->homeUrl ?>">Confessr
+                </a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
