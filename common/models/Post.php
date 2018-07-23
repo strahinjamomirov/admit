@@ -39,7 +39,7 @@ class Post extends ActiveRecord
         return [
             [['content'], 'required', 'message' => 'Confession can not be empty!'],
             [['comment_count', 'views_count', 'featured', 'comment_enabled'], 'integer'],
-            [['content'], 'string', 'length' => [5, 1000]],
+            [['content'], 'string', 'length' => [15, 1000]],
             [['date', 'modified'], 'safe'],
             [['author_ip'], 'string', 'max' => 100],
             ['comment_count', 'default', 'value' => 0],
