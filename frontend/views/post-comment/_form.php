@@ -32,6 +32,9 @@ use yii\widgets\ActiveForm;
 
     <?= Html::activeHiddenInput($model, 'post_id', ['value' => $post->id]) ?>
 
+    <?= $form->field($model, 'author')->textInput() ?>
+
+
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
@@ -41,3 +44,13 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end() ?>
 
 </div>
+<style>
+    .control-label, .reply-title {
+        color:white;
+    }
+
+    #postcomment-content, #postcomment-author{
+        background: rgba(50, 50, 50, 0.8);
+    }
+</style>
+

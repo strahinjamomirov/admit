@@ -200,7 +200,7 @@ class PostController extends Controller
                 return $this->redirect(['index']);
             }
 
-            if (!$comment->parent) {
+            if (!$comment->parent || $comment->parent == '0') {
                 $model->comment_count++;
             }
 
