@@ -148,7 +148,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionFAQ()
+    public function actionFaq()
     {
         return $this->render('faq');
     }
