@@ -18,6 +18,20 @@ return [
             'enableRegistration' => false,
         ],
         'rbac'     => 'dektrium\rbac\RbacWebModule',
-        'gridview' => ['class' => 'kartik\grid\Module']
+        'gridview' => ['class' => 'kartik\grid\Module'],
+        'social' => [
+            // the module class
+            'class' => 'kartik\social\Module',
+
+            // the global settings for the google-analytics widget
+            'google-analytics' => [
+                'id' => '',
+                'domain' => ''
+            ],
+            // the global settings for the facebook widget
+            'facebook' => [
+                'appId' => 'FACEBOOK_APP_ID',
+            ],
+        ]
     ]
 ];

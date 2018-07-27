@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e48f42d10f05dd2329080c8e9502108d",
+    "content-hash": "8e801e2297753d8e47ffad8ea3e1ee98",
     "packages": [
         {
             "name": "bower-asset/adminlte",
@@ -830,6 +830,50 @@
                 "icon"
             ],
             "time": "2016-10-24T15:52:54+00:00"
+        },
+        {
+            "name": "geertw/yii2-adsense",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geertw/yii2-adsense.git",
+                "reference": "44904689e6da05bad674c81cdcd64b34a7457c8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geertw/yii2-adsense/zipball/44904689e6da05bad674c81cdcd64b34a7457c8a",
+                "reference": "44904689e6da05bad674c81cdcd64b34a7457c8a",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "geertw\\Yii2\\Adsense\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Geert Wirken",
+                    "email": "geert@gwirken.nl"
+                }
+            ],
+            "description": "Widget for displaying Google AdSense banners",
+            "keywords": [
+                "adsense",
+                "adwords",
+                "extension",
+                "google",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-07-20T00:14:57+00:00"
         },
         {
             "name": "kartik-v/yii2-dialog",
