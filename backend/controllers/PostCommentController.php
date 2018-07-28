@@ -35,7 +35,7 @@ class PostCommentController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'delete', 'toggle-comment-enabled', 'like-comment', 'dislike-comment'],
+                        'actions' => ['index', 'delete', 'toggle-comment-enabled'],
                         'allow'   => true,
                         'roles'   => ['@'],
                     ],
@@ -154,64 +154,4 @@ class PostCommentController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    /**
-     * Function that increases number of likes
-     *
-     */
-    public function actionLikeComment()
-    {
-        if (Yii::$app->request->isAjax) {
-            $data = Yii::$app->request->post();
-            /** @var PostComment $postComment */
-            $postComment = PostComment::find()->where(['id' => $data['id']])->one();
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-            if (!$postComment) {
-                return [
-                    'notExisting' => true
-                ];
-            }
-
-            $postComment->likes = $postComment->likes + 1;
-            //$postComment->scenario = 'default';
-            $postComment->save();
-
-            $numberOfLikes = $postComment->likes - $postComment->dislikes;
-            return [
-                'id'            => $postComment->id,
-                'numberOfLikes' => $numberOfLikes,
-                'notExisting'   => false
-            ];
-        }
-    }
-
-    /**
-     * Function that increases number of dislikes
-     *
-     */
-    public function actionDislikeComment()
-    {
-        if (Yii::$app->request->isAjax) {
-            $data = Yii::$app->request->post();
-            /** @var PostComment $postComment */
-            $postComment = PostComment::find()->where(['id' => $data['id']])->one();
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-            if (!$postComment) {
-                return [
-                    'notExisting' => true
-                ];
-            }
-
-            $postComment->dislikes = $postComment->dislikes + 1;
-            //$post->scenario = 'default';
-            $postComment->save();
-            $numberOfLikes = $postComment->likes - $postComment->dislikes;
-            return [
-                'id'            => $postComment->id,
-                'numberOfLikes' => $numberOfLikes,
-                'notExisting'   => false
-            ];
-        }
-    }
 }

@@ -15,18 +15,55 @@ use yii\helpers\Url;
 $this->registerJs("
 
 $('body').on('click', '.praise-comment', function () {
-        likeFunction($(this).data('id'));
+        likeFunctionComment($(this).data('id'));
     });
     $('body').on('click', '.condemn-comment', function () {
-        dislikeFunction($(this).data('id'));
+        dislikeFunctionComment($(this).data('id'));
     });
 
 ");
-$this->registerJs("var urlLike = '" . Yii::$app->request->baseUrl . Url::to(['post-comment/like-comment']) . "';",
+$this->registerJs("var urlLikeComment = '" . Yii::$app->request->baseUrl . Url::to(['post/like-comment']) . "';",
     View::POS_BEGIN);
-$this->registerJs("var urlDislike = '" . Yii::$app->request->baseUrl . Url::to(['post-comment/dislike-comment']) . "';",
+$this->registerJs("var urlDislikeComment = '" . Yii::$app->request->baseUrl . Url::to(['post/dislike-comment']) . "';",
     View::POS_BEGIN);
 $this->registerJs("var _csrf = '" . Yii::$app->request->getCsrfToken() . "';", View::POS_BEGIN);
+
+$this->registerJs("
+    function likeFunctionComment(id) {
+        $.ajax({
+            url: urlLikeComment,
+            type: 'post',
+            data: {
+                id: id,
+                _csrf: _csrf
+            },
+            success: function (data) {
+                var notExisting = data.notExisting;
+                if (!notExisting) {
+                    var praiseCount = $('#number-of-comments-' + data.id);
+                    praiseCount.text(data.newCommentLike);
+                }
+            }
+        });
+    }
+
+    function dislikeFunctionComment(id) {
+        $.ajax({
+            url: urlDislikeComment,
+            type: 'post',
+            data: {
+                id: id,
+                _csrf: _csrf
+            },
+            success: function (data) {
+                var notExisting = data.notExisting;
+                if (!notExisting) {
+                    var praiseCount = $('#number-of-comments-' + data.id);
+                    praiseCount.text(data.newCommentLike);
+                }
+            }
+        });
+    }")
 ?>
 <div id="comment-view">
 
@@ -41,40 +78,3 @@ $this->registerJs("var _csrf = '" . Yii::$app->request->getCsrfToken() . "';", V
     </div>
 
 </div>
-<script>
-    function likeFunction(id) {
-        $.ajax({
-            url: urlLike,
-            type: 'post',
-            data: {
-                id: id,
-                _csrf: '<?=Yii::$app->request->getCsrfToken()?>'
-            },
-            success: function (data) {
-                var notExisting = data.notExisting;
-                if (!notExisting) {
-                    var praiseCount = $('#number-of-comments-' + data.id);
-                    praiseCount.text(data.newCommentLike);
-                }
-            }
-        });
-    }
-
-    function dislikeFunction(id) {
-        $.ajax({
-            url: urlDislike,
-            type: 'post',
-            data: {
-                id: id,
-                _csrf: '<?=Yii::$app->request->getCsrfToken()?>'
-            },
-            success: function (data) {
-                var notExisting = data.notExisting;
-                if (!notExisting) {
-                    var praiseCount = $('#number-of-comments-' + data.id);
-                    praiseCount.text(data.newCommentLike);
-                }
-            }
-        });
-    }
-</script>

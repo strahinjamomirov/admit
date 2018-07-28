@@ -6,6 +6,7 @@ namespace frontend\controllers;
 use common\components\IpHelper;
 use common\models\Post;
 use common\models\PostComment as Comment;
+use common\models\PostComment;
 use common\models\UserIp;
 use dominus77\sweetalert2\Alert;
 use Yii;
@@ -357,5 +358,68 @@ class PostController extends Controller
             ];
         }
     }
+
+
+    /**
+     * Function that increases number of likes
+     *
+     */
+    public function actionLikeComment()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            /** @var PostComment $postComment */
+            $postComment = PostComment::find()->where(['id' => $data['id']])->one();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (!$postComment) {
+                return [
+                    'notExisting' => true
+                ];
+            }
+
+            $postComment->likes = $postComment->likes + 1;
+            //$postComment->scenario = 'default';
+            $postComment->save();
+
+            $numberOfLikes = $postComment->likes - $postComment->dislikes;
+            return [
+                'id'            => $postComment->id,
+                'numberOfLikes' => $numberOfLikes,
+                'notExisting'   => false
+            ];
+        }
+    }
+
+    /**
+     * Function that increases number of dislikes
+     *
+     */
+    public function actionDislikeComment()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            /** @var PostComment $postComment */
+            $postComment = PostComment::find()->where(['id' => $data['id']])->one();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (!$postComment) {
+                return [
+                    'notExisting' => true
+                ];
+            }
+
+            $postComment->dislikes = $postComment->dislikes + 1;
+            //$post->scenario = 'default';
+            $postComment->save();
+            $numberOfLikes = $postComment->likes - $postComment->dislikes;
+            return [
+                'id'            => $postComment->id,
+                'numberOfLikes' => $numberOfLikes,
+                'notExisting'   => false
+            ];
+        }
+    }
+
 
 }
