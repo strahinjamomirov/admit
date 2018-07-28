@@ -486,3 +486,7 @@ a.link-color:active {
 #postcomment-content, #postcomment-author{
     background: rgba(50, 50, 50, 0.8);
 }
+
+.font-change{
+    font-size: 12px;
+}

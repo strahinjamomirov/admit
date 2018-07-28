@@ -1,19 +1,21 @@
 <?php
 /**
- * @link http://www.writesdown.com/
+ * @link      http://www.writesdown.com/
  * @copyright Copyright (c) 2015 WritesDown
- * @license http://www.writesdown.com/license/
+ * @license   http://www.writesdown.com/license/
  */
 
 namespace frontend\widgets;
 
 use common\models\PostComment as Comment;
+use Yii;
 use yii\data\Pagination;
+
 /**
  * Class PostComment
  *
  * @author Agiel K. Saputra <13nightevil@gmail.com>
- * @since 0.1.0
+ * @since  0.1.0
  */
 class PostComment extends BaseComment
 {
@@ -27,14 +29,14 @@ class PostComment extends BaseComment
         /* @var $models \common\models\BaseComment */
         $comments = [];
         $query = Comment::find()
-            ->select(['id',  'date', 'content'])
+            ->select(['id', 'date', 'content'])
             ->andWhere(['parent' => 0, 'post_id' => $this->model->id, 'is_enabled' => '1'])
             ->andWhere(['<=', 'date', date('Y-m-d H:i:s')])
             ->orderBy(['id' => $this->commentOrder]);
         $countQuery = clone $query;
         $pages = new Pagination([
             'totalCount' => $countQuery->count(),
-            'pageSize' => $this->pageSize,
+            'pageSize'   => $this->pageSize,
         ]);
         $this->pages = $pages;
         $models = $query
@@ -47,15 +49,17 @@ class PostComment extends BaseComment
         }
         $this->comments = $comments;
     }
+
     /**
      * Get comment children based on comment ID.
      *
      * @param int $id
+     *
      * @return array|null
      */
     protected function getChildren($id)
     {
-        /* @var $models \common\models\PostComment[] */
+        /* @var $models ModelPostComment[] */
         $comments = [];
         $models = Comment::find()
             ->select(['id', 'date', 'content'])

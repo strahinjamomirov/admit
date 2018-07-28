@@ -181,25 +181,49 @@ abstract class BaseComment extends Widget
                     <?= $comment->content ?>
                 </div>
             </div>
-            <div class="row">
+            <div class="row font-change">
                 <div class="col-md-6">
                     <?= $comment->author ? $comment->author : \Yii::t('app', 'Anonymous') ?>
                 </div>
-                <div class="col-md-3">
-                    <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
-                        <?= Html::a(Html::img('/images/reply.png'), '#', [
-                            'class'   => 'comment-reply-link',
-                            'data-id' => $comment->id,
-                        ]); ?>
-                        <?= $numberOfSubComments ?>
-                    <?php endif; ?>
-                    <?= Html::a('Reply ' . Html::img('/images/reply2.png'), '#', [
-                        'class'   => 'comment-reply-link link-color',
-                        'data-id' => $comment->id,
-                    ]); ?>
-                </div>
-                <div class="col-md-2">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
+                                <?= Html::a(Html::img('/images/reply.png'), '#', [
+                                    'class'   => 'comment-reply-link',
+                                    'data-id' => $comment->id,
+                                ]); ?>
+                                <?= $numberOfSubComments ?>
+                            <?php endif; ?>
+                            <?= Html::a('Reply ' . Html::img('/images/reply2.png'), '#', [
+                                'class'   => 'comment-reply-link link-color',
+                                'data-id' => $comment->id,
+                            ]); ?>
+                        </div>
 
+                        <div class="col-md-2">
+                            <div class="praise-comment"
+                                 data-id="<?= $comment->id ?>">
+                                Like
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="condemn-comment"
+                                 data-id="<?= $comment->id ?>">
+                                Dislike
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <?php
+                            $numberOfLikes = $comment->likes;
+                            $numberOfDislikes = $comment->dislikes;
+
+                            $number = $numberOfLikes - $numberOfDislikes;
+                            ?>
+                            <div id="number-of-comments-<?=$comment->id?>"><?= $number ?></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
