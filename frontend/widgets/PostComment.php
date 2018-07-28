@@ -29,7 +29,7 @@ class PostComment extends BaseComment
         /* @var $models \common\models\BaseComment */
         $comments = [];
         $query = Comment::find()
-            ->select(['id', 'date', 'content'])
+            ->select([])
             ->andWhere(['parent' => 0, 'post_id' => $this->model->id, 'is_enabled' => '1'])
             ->andWhere(['<=', 'date', date('Y-m-d H:i:s')])
             ->orderBy(['id' => $this->commentOrder]);
@@ -59,10 +59,10 @@ class PostComment extends BaseComment
      */
     protected function getChildren($id)
     {
-        /* @var $models ModelPostComment[] */
+        /* @var $models Comment[] */
         $comments = [];
         $models = Comment::find()
-            ->select(['id', 'date', 'content'])
+            ->select([])
             ->andWhere(['parent' => $id, 'post_id' => $this->model->id, 'is_enabled' => '1'])
             ->andWhere(['<=', 'date', date('Y-m-d H:i:s')])
             ->orderBy(['id' => $this->commentOrder])

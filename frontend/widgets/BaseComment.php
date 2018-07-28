@@ -220,6 +220,7 @@ abstract class BaseComment extends Widget
                             $numberOfDislikes = $comment->dislikes;
 
                             $number = $numberOfLikes - $numberOfDislikes;
+
                             ?>
                             <div id="number-of-comments-<?=$comment->id?>"><?= $number ?></div>
                         </div>

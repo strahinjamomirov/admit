@@ -379,7 +379,7 @@ class PostController extends Controller
             }
 
             $postComment->likes = $postComment->likes + 1;
-            //$postComment->scenario = 'default';
+            $postComment->scenario = 'default';
             $postComment->save();
 
             $numberOfLikes = $postComment->likes - $postComment->dislikes;
@@ -410,7 +410,7 @@ class PostController extends Controller
             }
 
             $postComment->dislikes = $postComment->dislikes + 1;
-            //$post->scenario = 'default';
+            $postComment->scenario = 'default';
             $postComment->save();
             $numberOfLikes = $postComment->likes - $postComment->dislikes;
             return [
