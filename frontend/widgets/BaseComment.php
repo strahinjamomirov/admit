@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 /**
  * Class BaseComment
@@ -190,13 +191,15 @@ abstract class BaseComment extends Widget
                         <div class="col-md-6">
                             <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
                                 <?= Html::a(Html::img('/images/reply.png'), '#', [
-                                    'class'   => 'comment-reply-link',
+                                    'class'   => 'comment-reply-link link-color',
+                                    'value' => Url::to(['post/post-comment-reply', 'parent'=>$comment->id]),
                                     'data-id' => $comment->id,
                                 ]); ?>
                                 <?= $numberOfSubComments ?>
                             <?php endif; ?>
                             <?= Html::a('Reply ' . Html::img('/images/reply2.png'), '#', [
                                 'class'   => 'comment-reply-link link-color',
+                                'value' => Url::to(['post/post-comment-reply', 'parent'=>$comment->id]),
                                 'data-id' => $comment->id,
                             ]); ?>
                         </div>

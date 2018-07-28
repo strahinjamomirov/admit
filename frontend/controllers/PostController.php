@@ -5,14 +5,13 @@ namespace frontend\controllers;
 
 use common\components\IpHelper;
 use common\models\Post;
-use common\models\PostComment as Comment;
 use common\models\PostComment;
+use common\models\PostComment as Comment;
 use common\models\UserIp;
 use dominus77\sweetalert2\Alert;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -32,12 +31,6 @@ class PostController extends Controller
                         'allow' => true,
                         'roles' => ['?'],
                     ],
-                ],
-            ],
-            'verbs'  => [
-                'class'   => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -418,6 +411,49 @@ class PostController extends Controller
                 'numberOfLikes' => $numberOfLikes,
                 'notExisting'   => false
             ];
+        }
+    }
+
+    /**
+     * Reply comment.
+     *
+     * @param $parent
+     *
+     * @return string
+     */
+    public function actionPostCommentReply($parent)
+    {
+        $comment = new PostComment();
+        $comment->parent = $parent;
+        $comment->scenario = 'default';
+
+        $parentModel = PostComment::findOne(['id' => $parent]);
+        $post = $parentModel->commentPost;
+
+        if ($comment->load(Yii::$app->request->post())) {
+            $comment->parent = $parent;
+            $ipAddress = Yii::$app->request->userIP;
+            $checkBlacklist = $this->checkBlacklisted($ipAddress);
+            if ($checkBlacklist) {
+                return $checkBlacklist;
+            }
+
+            if (!$comment->save()) {
+                Yii::$app->session->setFlash(Alert::TYPE_ERROR, Yii::t('app', 'There was an error while commenting.'));
+                return $this->redirect(['index']);
+            }
+            return $this->redirect(['post/view', 'id' => $post->id]);
+
+        } elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('/post-comment/_form_ajax', [
+                'model' => $comment,
+                'post'  => $post
+            ]);
+        } else {
+            return $this->render('/post-comment/_form', [
+                'model' => $comment,
+                'post'  => $post
+            ]);
         }
     }
 

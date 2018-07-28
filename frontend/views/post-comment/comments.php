@@ -61,7 +61,20 @@ $this->registerJs("
                 }
             }
         });
-    }", View::POS_END)
+    }", View::POS_END);
+
+$this->registerJS("
+
+        $(document).on('click', '.comment-reply-link', function(){
+        if ($('#modal').data('bs.modal').isShown) {
+            $('#modal').find('#modalContent')
+                    .load($(this).attr('value'));
+        } else {
+            $('#modal').modal('show')
+                    .find('#modalContent')
+                    .load($(this).attr('value'));
+        }
+    });");
 ?>
 <div id="comment-view">
 
@@ -76,3 +89,25 @@ $this->registerJs("
     </div>
 
 </div>
+
+<?php
+yii\bootstrap\Modal::begin([
+//    'headerOptions' => ['id' => 'modalHeader'],
+    'id'            => 'modal',
+    'size'          => 'modal-lg',
+    //keeps from closing modal with esc key or by clicking out of the modal.
+    // user must click cancel or X to close
+    'clientOptions' => ['backdrop' => 'static', 'keyboard' => true]
+]);
+echo "<div id='modalContent'></div>";
+yii\bootstrap\Modal::end();
+?>
+
+<style>
+    .modal-header {
+        background: rgba(50, 50, 50, 0.8);
+    }
+    .modal-body{
+        padding:0;
+    }
+</style>
