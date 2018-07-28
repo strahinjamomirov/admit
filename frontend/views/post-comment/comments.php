@@ -40,8 +40,7 @@ $this->registerJs("
             success: function (data) {
                 var notExisting = data.notExisting;
                 if (!notExisting) {
-                    var praiseCount = $('#number-of-comments-' + data.id);
-                    praiseCount.text(data.newCommentLike);
+                    $('#number-of-comments-' + data.id).text(data.numberOfLikes);
                 }
             }
         });
@@ -58,12 +57,11 @@ $this->registerJs("
             success: function (data) {
                 var notExisting = data.notExisting;
                 if (!notExisting) {
-                    var praiseCount = $('#number-of-comments-' + data.id);
-                    praiseCount.text(data.newCommentLike);
+                    $('#number-of-comments-' + data.id).text(data.numberOfLikes);
                 }
             }
         });
-    }")
+    }", View::POS_END)
 ?>
 <div id="comment-view">
 
