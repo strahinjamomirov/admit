@@ -174,35 +174,35 @@ abstract class BaseComment extends Widget
             'class' => $comment->child ? 'parent depth-' . $depth : 'depth-' . $depth,
         ]);
         ?>
+
         <div class="media-body comment-body">
-            <p class="meta">
-                <strong class="author vcard">
-                    <span class="fn">
-                        <?= $comment->author ? $comment->author : \Yii::t('app', 'Anonymous') ?>
-
-                    </span>
-                </strong>
-                -
-                <time class="date published" datetime="<?= \Yii::$app
-                    ->formatter
-                    ->asDatetime($comment->date) ?>">
-                    <?= \Yii::$app->formatter->asDate($comment->date) ?>
-
-                </time>
-
-                <?php if ($depth < $this->maxDepth && $this->enableThreadComments) {
-                    echo Html::a(\Yii::t('app', 'Reply'), '#', [
-                        'class'   => 'comment-reply-link',
-                        'data-id' => $comment->id,
-                    ]);
-                }
-                ?>
-
-            </p>
-            <div class="comment-content">
-                <?= $comment->content ?>
-
+            <div class="row">
+                <div class="col-md-12 comment-content">
+                    <?= $comment->content ?>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $comment->author ? $comment->author : \Yii::t('app', 'Anonymous') ?>
+                </div>
+                <div class="col-md-3">
+                    <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
+                        <?= Html::a(Html::img('/images/reply.png'), '#', [
+                            'class'   => 'comment-reply-link',
+                            'data-id' => $comment->id,
+                        ]); ?>
+                        <?= $numberOfSubComments ?>
+                    <?php endif; ?>
+                    <?= Html::a('Reply ' . Html::img('/images/reply2.png'), '#', [
+                        'class'   => 'comment-reply-link link-color',
+                        'data-id' => $comment->id,
+                    ]); ?>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+
         </div>
         <?php
         echo Html::endTag('div');

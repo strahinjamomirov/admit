@@ -314,7 +314,7 @@ dl, menu, ol, ul {
     padding-top: 3px;
     opacity: 1;
     display: inline-block;
-    background-color: rgba(50, 50, 50, .7);
+    background-color: rgba(50, 50, 50, 0.8);
     margin-bottom: 20px;
     box-shadow: 0 0 8px rgba(0, 0, 0, .7);
     -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .7);
@@ -417,10 +417,29 @@ dl, menu, ol, ul {
     opacity: 0.8;
 }
 
-a.link-color:link { color:#FFF; text-decoration:none; font-weight:normal; }
-a.link-color:visited { color: #FFF; text-decoration:none; font-weight:normal; }
-a.link-color:hover { color: #FFF; text-decoration:underline; font-weight:normal; }
-a.link-color:active { color: #FFF; text-decoration:none; font-weight:normal; }
+a.link-color:link {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+a.link-color:visited {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+a.link-color:hover {
+    color: #FFF;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+a.link-color:active {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: normal;
+}
 
 .sidebar-content {
     display: inline-block;
@@ -436,3 +455,34 @@ a.link-color:active { color: #FFF; text-decoration:none; font-weight:normal; }
 }
 
 /***** CONFESSION END *****/
+
+.media.comment {
+    font-size: 14px;
+    background: rgba(50, 50, 50, 0.15);
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.21);
+    -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.21);
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.21);
+}
+
+.report-comm{
+    float: right;
+    opacity: 1;
+    margin: 2px 2px 0 0;
+    cursor: pointer;
+}
+
+
+
+#comments{
+    color: white;
+}
+
+.control-label, .reply-title {
+    color:white;
+}
+
+#postcomment-content, #postcomment-author{
+    background: rgba(50, 50, 50, 0.8);
+}

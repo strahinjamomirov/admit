@@ -18,6 +18,8 @@ use frontend\widgets\PostComment;
 
     <?php endif ?>
 
-    <?= $this->render('_form', ['model' => $comment, 'post' => $post]) ?>
+    <div class="confession">
+        <?= $this->render('_form', ['model' => $comment, 'post' => $post]) ?>
+    </div>
 
 </div>

@@ -44,13 +44,5 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end() ?>
 
 </div>
-<style>
-    .control-label, .reply-title {
-        color:white;
-    }
 
-    #postcomment-content, #postcomment-author{
-        background: rgba(50, 50, 50, 0.8);
-    }
-</style>
 
