@@ -10,9 +10,9 @@ namespace frontend\widgets;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
-use yii\helpers\Url;
 
 /**
  * Class BaseComment
@@ -95,7 +95,7 @@ abstract class BaseComment extends Widget
         }
         if (!$this->maxDepth) {
 //            $this->maxDepth = Option::get('thread_comments_depth');
-            $this->maxDepth = 40;
+            $this->maxDepth = 2;
         }
         if (!$this->commentOrder) {
             $this->commentOrder = SORT_DESC;
@@ -188,21 +188,24 @@ abstract class BaseComment extends Widget
                 </div>
                 <div class="col-md-6">
                     <div class="row">
+                        <?php if ($depth < $this->maxDepth && $this->enableThreadComments): ?>
+
                         <div class="col-md-6">
-                            <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
+                                <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
                                 <?= Html::a(Html::img('/images/reply.png'), '#', [
                                     'class'   => 'comment-reply-link link-color',
-                                    'value' => Url::to(['post/post-comment-reply', 'parent'=>$comment->id]),
+                                    'value'   => Url::to(['post/post-comment-reply', 'parent' => $comment->id]),
                                     'data-id' => $comment->id,
                                 ]); ?>
                                 <?= $numberOfSubComments ?>
                             <?php endif; ?>
-                            <?= Html::a('Reply ' . Html::img('/images/reply2.png'), '#', [
-                                'class'   => 'comment-reply-link link-color',
-                                'value' => Url::to(['post/post-comment-reply', 'parent'=>$comment->id]),
-                                'data-id' => $comment->id,
-                            ]); ?>
+                                <?= Html::a('Reply ' . Html::img('/images/reply2.png'), '#', [
+                                    'class'   => 'comment-reply-link link-color',
+                                    'value'   => Url::to(['post/post-comment-reply', 'parent' => $comment->id]),
+                                    'data-id' => $comment->id,
+                                ]); ?>
                         </div>
+
 
                         <div class="col-md-2">
                             <div class="praise-comment"
@@ -225,8 +228,10 @@ abstract class BaseComment extends Widget
                             $number = $numberOfLikes - $numberOfDislikes;
 
                             ?>
-                            <div id="number-of-comments-<?=$comment->id?>"><?= $number ?></div>
+                            <div id="number-of-comments-<?= $comment->id ?>"><?= $number ?></div>
                         </div>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>
@@ -241,7 +246,9 @@ abstract class BaseComment extends Widget
      *
      * @param int $id
      */
-    protected function getChildren($id)
-    {
+    protected
+    function getChildren(
+        $id
+    ) {
     }
 }

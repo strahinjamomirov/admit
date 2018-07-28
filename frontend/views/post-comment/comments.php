@@ -76,7 +76,8 @@ $this->registerJS("
         }
     });");
 ?>
-<div id="comment-view">
+<div id="comment-view" class="confession">
+    <h3 class="reply-title"><?= Yii::t('app', 'Comments') ?></h3>
 
     <?php if ($post->comment_count): ?>
 
