@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <p>
         <?= Html::a('<strong>' . Yii::t('app', 'Cancel Reply') . '</strong>', '#', [
             'id'    => 'cancel-reply',
-            'class' => 'cancel-reply',
+            'clss' => 'cancel-reply',
             'style' => 'display:none;',
         ]) ?>
 
