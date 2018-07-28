@@ -171,6 +171,68 @@ class PostController extends Controller
     }
 
     /**
+     * Rendering new confessions.
+     *
+     * @return string
+     */
+    public function actionNew()
+    {
+        $render = 'index';
+
+        $query = Post::find()
+            ->andWhere(['<=', 'date', date('Y-m-d')])
+            ->andWhere(['is_enabled' => 1])
+            ->orderBy(['id' => SORT_DESC]);
+
+        $countQuery = clone $query;
+
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'pageSize'   => Yii::$app->params['postPerPage'],
+        ]);
+
+        $query->offset($pages->offset)->limit($pages->limit);
+
+        $posts = $query->all();
+
+        return $this->render($render, [
+            'posts' => $posts,
+            'pages' => $pages,
+        ]);
+    }
+
+    /**
+     * Rendering featured confessions.
+     *
+     * @return string
+     */
+    public function actionFeatured()
+    {
+        $render = 'index';
+
+        $query = Post::find()
+            ->andWhere(['<=', 'date', date('Y-m-d')])
+            ->andWhere(['is_enabled' => 1])
+            ->orderBy(['is_enabled' => SORT_DESC, 'likes' => SORT_DESC]);
+
+        $countQuery = clone $query;
+
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'pageSize'   => Yii::$app->params['postPerPage'],
+        ]);
+
+        $query->offset($pages->offset)->limit($pages->limit);
+
+        $posts = $query->all();
+
+        return $this->render($render, [
+            'posts' => $posts,
+            'pages' => $pages,
+        ]);
+    }
+
+    /**
      * Displays a single Post model.
      *
      * @param integer $id Post ID
