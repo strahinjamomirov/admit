@@ -9,17 +9,18 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
 $this->title = 'Contact';
-$this->params['breadcrumbs'][] = $this->title;
+Yii::$app->controller->layout = 'post';
+Yii::$app->params['bodyClass'] = 'confess-page';
 ?>
-<div class="site-contact">
+<div class="site-contact post-wrap">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <p class="contact-description">
         If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
     </p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-12">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
@@ -43,3 +44,23 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
+
+<style>
+
+    h1, .contact-description {
+        color:white;
+    }
+    .post-wrap {
+        padding: 20px;
+        /*margin: 20px;*/
+        background: rgba(50, 50, 50, 0.8);
+    }
+
+    .form-control {
+        background: rgba(50, 50, 50, 0.8);
+    }
+    .control-label {
+        color:white;
+    }
+
+</style>
