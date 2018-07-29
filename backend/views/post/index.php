@@ -8,8 +8,8 @@
 
 use common\components\Box;
 use common\models\Post;
-use kartik\grid\GridView;
 use yii\helpers\Html;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -93,6 +93,12 @@ $this->title = Yii::t('app', 'Confessions');
                 'falseLabel' => 'No',
                 'class'      => 'common\components\ToggleColumn',
                 'action'     => 'toggle-enabled'
+            ],
+            [
+                'attribute'  => 'is_reported'
+            ],
+            [
+                'attribute' => 'number_of_reports'
             ],
             [
                 'class'    => 'yii\grid\ActionColumn',
