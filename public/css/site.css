@@ -413,7 +413,7 @@ dl, menu, ol, ul {
 
 .comments-icon {
     background-size: 23px;
-    background: url(/images/comment_empty.png) no-repeat 45px;
+    background: url(/images/comment_empty.png) no-repeat 55px;
     opacity: 0.8;
 }
 
@@ -489,4 +489,17 @@ a.link-color:active {
 
 .font-change{
     font-size: 12px;
+}
+
+.comment-body {
+    padding: 10px;
+}
+
+.report-post{
+    float:right;
+    color: #FEFEFE;
+    opacity: .5;
+    font-size: 12px;
+    transition: opacity .2s linear;
+    text-decoration: none;
 }

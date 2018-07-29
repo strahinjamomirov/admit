@@ -20,15 +20,34 @@ $('body').on('click', '.praise-comment', function () {
     $('body').on('click', '.condemn-comment', function () {
         dislikeFunctionComment($(this).data('id'));
     });
+     $('body').on('click', '.report-comment', function () {
+        reportComment($(this).data('id'));
+    });
 
 ");
 $this->registerJs("var urlLikeComment = '" . Yii::$app->request->baseUrl . Url::to(['post/like-comment']) . "';",
     View::POS_BEGIN);
 $this->registerJs("var urlDislikeComment = '" . Yii::$app->request->baseUrl . Url::to(['post/dislike-comment']) . "';",
     View::POS_BEGIN);
+$this->registerJs("var urlReportComment = '" . Yii::$app->request->baseUrl . Url::to(['post/report-comment']) . "';",
+    View::POS_BEGIN);
 $this->registerJs("var _csrf = '" . Yii::$app->request->getCsrfToken() . "';", View::POS_BEGIN);
 
 $this->registerJs("
+
+    function reportComment(id) {
+        $.ajax({
+            url: urlReportComment,
+            type: 'post',
+            data: {
+                id: id,
+                _csrf: _csrf
+            },
+            success: function (data) {
+            }
+        });
+    }
+
     function likeFunctionComment(id) {
         $.ajax({
             url: urlLikeComment,

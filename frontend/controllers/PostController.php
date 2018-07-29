@@ -457,5 +457,59 @@ class PostController extends Controller
         }
     }
 
+    /**
+     * Function that reports comment.
+     *
+     */
+    public function actionReportComment()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            /** @var PostComment $postComment */
+            $postComment = PostComment::find()->where(['id' => $data['id']])->one();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (!$postComment) {
+                return [
+                    'notExisting' => true
+                ];
+            }
+
+            $postComment->is_reported = 1;
+            $postComment->number_of_reports = $postComment->number_of_reports + 1;
+            $postComment->scenario = 'default';
+            $postComment->save();
+            Yii::$app->session->setFlash('info', 'Your report has been successful');
+            return $this->redirect(['post/view', 'id' => $postComment->commentPost->id]);
+        }
+    }
+
+    /**
+     * Function that reports comment.
+     *
+     */
+    public function actionReportPost()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            /** @var Post $post */
+            $post = Post::find()->where(['id' => $data['id']])->one();
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if (!$post) {
+                return [
+                    'notExisting' => true
+                ];
+            }
+
+            $post->is_reported = 1;
+            $post->number_of_reports = $post->number_of_reports + 1;
+            $post->scenario = 'default';
+            $post->save();
+            Yii::$app->session->setFlash('info', 'Your report has been successful');
+            return $this->redirect(['post/view', 'id' => $post->id]);
+        }
+    }
+
 
 }

@@ -183,14 +183,14 @@ abstract class BaseComment extends Widget
                 </div>
             </div>
             <div class="row font-change">
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <?= $comment->author ? $comment->author : \Yii::t('app', 'Anonymous') ?>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <div class="row">
                         <?php if ($depth < $this->maxDepth && $this->enableThreadComments): ?>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
                                     <?= Html::a(Html::img('/images/reply.png'), '#', [
                                         'class'   => 'close-children link-color',
@@ -229,6 +229,12 @@ abstract class BaseComment extends Widget
                                 ?>
                                 <div id="number-of-comments-<?= $comment->id ?>"><?= $number ?></div>
                             </div>
+                        <div class="col-md-2">
+                            <div class="report-comment"
+                                 data-id="<?= $comment->id ?>">
+                                Report
+                            </div>
+                        </div>
                         <?php endif; ?>
 
                     </div>

@@ -21,6 +21,8 @@ use yii\helpers\Html;
  * @property integer       $dislikes
  * @property integer       $featured
  * @property integer       $is_enabled
+ * @property integer       $is_reported
+ * @property integer       $number_of_reports
  *
  * @property PostComment[] $postComments
  *
@@ -49,6 +51,8 @@ class Post extends ActiveRecord
             ['likes', 'default', 'value' => 0],
             ['dislikes', 'default', 'value' => 0],
             ['featured', 'default', 'value' => 0],
+            ['is_reported', 'default', 'value' => 0],
+            ['number_of_reports', 'default', 'value' => 0],
             ['verifyCode', 'captcha']
         ];
     }
@@ -74,6 +78,8 @@ class Post extends ActiveRecord
             'comment_count'   => Yii::t('app', 'Comment Count'),
             'comment_enabled' => Yii::t('app', 'Comment Enabled'),
             'is_enabled'      => Yii::t('app', 'Enabled'),
+            'is_reported'      => Yii::t('app', 'Reported'),
+            'number_of_reports'      => Yii::t('app', 'Number Of Reports'),
         ];
     }
 
