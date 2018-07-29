@@ -75,6 +75,7 @@ $this->registerJS("
                     .load($(this).attr('value'));
         }
     });");
+
 ?>
 <div id="comment-view" class="confession">
     <h3 class="reply-title"><?= Yii::t('app', 'Comments') ?></h3>

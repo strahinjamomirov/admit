@@ -190,46 +190,45 @@ abstract class BaseComment extends Widget
                     <div class="row">
                         <?php if ($depth < $this->maxDepth && $this->enableThreadComments): ?>
 
-                        <div class="col-md-6">
+                            <div class="col-md-6">
                                 <?php if ($comment->child): $numberOfSubComments = count($comment->child); ?>
-                                <?= Html::a(Html::img('/images/reply.png'), '#', [
-                                    'class'   => 'comment-reply-link link-color',
-                                    'value'   => Url::to(['post/post-comment-reply', 'parent' => $comment->id]),
-                                    'data-id' => $comment->id,
-                                ]); ?>
-                                <?= $numberOfSubComments ?>
-                            <?php endif; ?>
+                                    <?= Html::a(Html::img('/images/reply.png'), '#', [
+                                        'class'   => 'close-children link-color',
+                                        'data-id' => $comment->id,
+                                    ]); ?>
+                                    <?= $numberOfSubComments ?>
+                                <?php endif; ?>
                                 <?= Html::a('Reply ' . Html::img('/images/reply2.png'), '#', [
                                     'class'   => 'comment-reply-link link-color',
                                     'value'   => Url::to(['post/post-comment-reply', 'parent' => $comment->id]),
                                     'data-id' => $comment->id,
                                 ]); ?>
-                        </div>
-
-
-                        <div class="col-md-2">
-                            <div class="praise-comment"
-                                 data-id="<?= $comment->id ?>">
-                                Like
                             </div>
-                        </div>
 
-                        <div class="col-md-2">
-                            <div class="condemn-comment"
-                                 data-id="<?= $comment->id ?>">
-                                Dislike
+
+                            <div class="col-md-2">
+                                <div class="praise-comment"
+                                     data-id="<?= $comment->id ?>">
+                                    Like
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <?php
-                            $numberOfLikes = $comment->likes;
-                            $numberOfDislikes = $comment->dislikes;
 
-                            $number = $numberOfLikes - $numberOfDislikes;
+                            <div class="col-md-2">
+                                <div class="condemn-comment"
+                                     data-id="<?= $comment->id ?>">
+                                    Dislike
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <?php
+                                $numberOfLikes = $comment->likes;
+                                $numberOfDislikes = $comment->dislikes;
 
-                            ?>
-                            <div id="number-of-comments-<?= $comment->id ?>"><?= $number ?></div>
-                        </div>
+                                $number = $numberOfLikes - $numberOfDislikes;
+
+                                ?>
+                                <div id="number-of-comments-<?= $comment->id ?>"><?= $number ?></div>
+                            </div>
                         <?php endif; ?>
 
                     </div>
@@ -246,9 +245,7 @@ abstract class BaseComment extends Widget
      *
      * @param int $id
      */
-    protected
-    function getChildren(
-        $id
-    ) {
+    protected function getChildren($id)
+    {
     }
 }
